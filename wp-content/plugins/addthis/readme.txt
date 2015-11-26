@@ -1,9 +1,9 @@
 === AddThis Sharing Buttons ===
 Contributors: abramsm, srijith.v, vipinss, dnrahamim, jgrodel, bradaddthiscom, mkitzman, addthis_paul, addthis_matt, addthis_elsa, ribin_addthis, AddThis_Mike
-Tags: AddThis, addtoany, bookmark, bookmarking, email, e-mail, sharing buttons, share, share this, facebook, google+, pinterest, instagram, linkedin, whatsapp, social tools, website tools, twitter, content marketing, recommended content, conversion tool, subscription button, conversion tools, email tools, ecommerce tools, social marketing, personalization tools
+Tags: bookmarking, email sharing, facebook, linkedin, pinterest, share, sharing buttons, social marketing, social tools, twitter, whatsapp
 Requires at least: 3.0
 Tested up to: 4.3
-Stable tag: 5.1.2
+Stable tag: 5.2.0
 
 AddThis provides the best sharing tools to help you make your website smarter.
 
@@ -75,6 +75,15 @@ In the screen options you can enable the AddThis meta box. Check the box and sav
 7. Customization options on the AddThis Dashboard
 
 == Changelog ==
+
+= 5.2.0 =
+* New feature: AddThis Sharing Buttons metabox supported on custom post types. This meta box is used to disable sharing buttons on posts when editing them.
+* Removing duplicate metabox title 'AddThis'
+* Fixing preview options in plugin settings
+* Using a more unique preview identifier to reduce likelyhood of conflicts with other plugins (specifically <a href="https://wordpress.org/support/plugin/public-post-preview">Public Post Preview</a>)
+* Fix for undefined variable below_excerpt in addthis_social_widget.php on line 1301
+* Fix for non-object post in addthis_settings_functions.php on line 430
+* Fix for Clickback checkbox in Advanced Options
 
 = 5.1.2 =
 * Resolves a bug where above excerpt sharing buttons would be added whenever below excerpt sharing buttons were enabled
@@ -385,7 +394,16 @@ Fixed nondeterministic bug with the_title(), causing the title to occasionally a
 
 == Upgrade Notice ==
 
-= 5.1.2=
+= 5.2.0 =
+* New feature: AddThis Sharing Buttons metabox supported on custom post types. This meta box is used to disable sharing buttons on posts when editing them.
+* Removing duplicate metabox title 'AddThis'
+* Fixing preview options in plugin settings
+* Using a more unique preview identifier to reduce likelyhood of conflicts with other plugins (specifically <a href="https://wordpress.org/support/plugin/public-post-preview">Public Post Preview</a>)
+* Fix for undefined variable below_excerpt in addthis_social_widget.php on line 1301
+* Fix for non-object post in addthis_settings_functions.php on line 430
+* Fix for Clickback checkbox in Advanced Options
+
+= 5.1.2 =
 * Resolves a bug where above excerpt sharing buttons would be added whenever below excerpt sharing buttons were enabled
 * Adding back in the addthis_post_exclude filter
 

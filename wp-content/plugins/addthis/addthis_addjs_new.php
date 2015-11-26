@@ -268,9 +268,25 @@ Class AddThis_addjs_sharing_button_plugin{
             return;
         }
 
-        add_meta_box('at_widget', __('AddThis Sharing Buttons'), array($this, 'add_at_flag_meta_box'), 'post', 'advanced', 'high');
-        add_meta_box('at_widget', __('AddThis Sharing Buttons'), array($this, 'add_at_flag_meta_box'), 'page', 'advanced', 'high');
+        $args = array(
+           '_builtin' => false,
+        );
+        $postTypes = get_post_types($args, 'names');
+        $postTypes[] = 'post';
+        $postTypes[] = 'page';
+
+        foreach ($postTypes as $postType) {
+            add_meta_box(
+                'at_widget',
+                __('AddThis Sharing Buttons'),
+                array($this, 'add_at_flag_meta_box'),
+                $postType,
+                'advanced',
+                'high'
+            );
+        }
     }
+
     /*
      * Function to add checkbox to show/hide Addthis sharing buttons in admin post add/edit page.
      */

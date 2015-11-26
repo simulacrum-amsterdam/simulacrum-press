@@ -427,7 +427,7 @@ function _addthis_determine_template_type() {
         if (is_category()) {
             $type = 'categories';
         }
-    } elseif (is_page($post->ID)) {
+    } elseif (is_object($post) && is_page($post->ID)) {
         $type = 'pages';
     } elseif (is_single()) {
         $type = 'posts';

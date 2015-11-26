@@ -3,7 +3,7 @@
  * Plugin Name: AddThis Sharing Buttons
  * Plugin URI: http://www.addthis.com
  * Description: Use the AddThis suite of website tools which includes sharing, following, recommended content, and conversion tools to help you make your website smarter. With AddThis, you can see how your users are engaging with your content, provide a personalized experience for each user and encourage them to share, subscribe or follow.
- * Version: 5.1.2
+ * Version: 5.2.0
  * Author: The AddThis Team
  * Author URI: http://www.addthis.com/
  * License: GPL2
@@ -36,7 +36,6 @@ define( 'ENABLE_ADDITIONAL_PLACEMENT_OPTION', 0);
 require_once('AddThisWordPressSharingButtonsPlugin.php');
 require_once('AddThisWordPressConnector.php');
 require_once('AddThisConfigs.php');
-require_once('addthis_post_metabox.php');
 
 $addThisSharingButtonsPluginObject = new AddThisWordPressSharingButtonsPlugin();
 $cmsConnector = new AddThisWordPressConnector($addThisSharingButtonsPluginObject);
@@ -675,18 +674,12 @@ if ($addthis_options['addthis_plugin_controls'] == "AddThis") {
         }
 
         // Parse Post data
-        $option_array = addthis_parse_options($values);
+        $configs = addthis_parse_options($values);
 
-        // Set Transient
-        if (get_transient('addthis_settings') !==  false) {
-            delete_transient('addthis_settings');
-        }
+        global $cmsConnector;
+        $cmsConnector->saveConfigs($configs, true);
 
-        $eh = set_transient('addthis_settings', $option_array, 120);
-
-        print_r($option_array);
-
-        die();
+        wp_send_json($configs);
     }
 
     function addthis_save_settings($input)
@@ -1297,7 +1290,7 @@ if ($addthis_options['addthis_plugin_controls'] == "AddThis") {
             && (!$excerpt || _addthis_excerpt_buttons_enabled_below())
         ) {
             $below = addthis_display_widget_below($styles, $options);
-        } elseif (   $below_excerpt
+        } elseif (   $excerpt
                   && $displayBelow
                   && $options['below'] != 'none'
         ) {
@@ -2636,7 +2629,7 @@ function _addthis_settings_buttons($includePreview = true) {
             $previewLink = str_replace('http://', 'https://', $previewLink);
         }
         $queryArgs = array(
-            'preview' => 1,
+            'addthis_preview' => 1,
             'template' => $template,
             'stylesheet' => $stylesheet,
             'preview_iframe' => true,

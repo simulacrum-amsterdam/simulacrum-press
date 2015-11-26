@@ -330,7 +330,9 @@ if (!class_exists('AddThisConfigs')) {
                 $this->getConfigs();
             }
 
-            $addThisConfigVariable = array();
+            $addThisConfigVariable = array(
+                'data_track_clickback' => false,
+            );
 
             if (!empty($this->configs['data_ga_property']) ){
                 $addThisConfigVariable['data_ga_property'] = $this->configs['data_ga_property'];
@@ -504,9 +506,11 @@ if (!class_exists('AddThisConfigs')) {
                 $pluginInfo['select_prefs']['addthis_sidebar_enabled'] = $this->configs['addthis_sidebar_enabled'];
             }
 
-            foreach ($this->configs as $field => $value) {
-                if (strpos($field, '_showon_') !== false) {
-                    $pluginInfo['select_prefs'][$field] = $value;
+            if (is_array($this->configs)) {
+                foreach ($this->configs as $field => $value) {
+                    if (strpos($field, '_showon_') !== false) {
+                        $pluginInfo['select_prefs'][$field] = $value;
+                    }
                 }
             }
 

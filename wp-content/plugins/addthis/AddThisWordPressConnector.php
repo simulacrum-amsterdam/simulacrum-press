@@ -90,7 +90,14 @@ if (!class_exists('AddThisWordPressConnector')) {
             'addthis_config_trending_json',
             'addthis_config_welcome_json',
             'addthis_plugin_controls',
-
+            // new code base only fields
+            'filter_get_the_excerpt',
+            'filter_the_excerpt',
+            'filter_wp_trim_excerpt',
+            'startUpgradeAt',
+            'debug_enable',
+            'darkseid_environment',
+            'settings_ui_base_url',
         );
 
         static $deprecatedSharedVariables = array(
@@ -240,9 +247,13 @@ if (!class_exists('AddThisWordPressConnector')) {
         public function getPluginConfigVariables() {
             if ($this->isPreviewMode()) {
                 $plugin = get_transient($this->plugin->getConfigVariableName());
-            } else {
-                $plugin = get_option($this->plugin->getConfigVariableName());
+
+                if (is_array($plugin) && !empty($plugin)) {
+                    return $plugin;
+                }
             }
+
+            $plugin = get_option($this->plugin->getConfigVariableName());
 
             return $plugin;
         }
@@ -250,28 +261,32 @@ if (!class_exists('AddThisWordPressConnector')) {
         public function getSharedConfigVariables() {
             if ($this->isPreviewMode()) {
                 $shared = get_transient($this->sharedConfigVariableName);
-            } else {
-                $shared = get_option($this->sharedConfigVariableName);
+
+                if (is_array($shared) && !empty($shared)) {
+                    return $shared;
+                }
             }
+
+            $shared = get_option($this->sharedConfigVariableName);
 
             return $shared;
         }
 
-        public function saveConfigs($configs = null) {
+        public function saveConfigs($configs = null, $transient = false) {
             if (!is_array($configs)) {
                 $configs = $this->configs;
             }
 
             if (is_array($configs)) {
-                $this->saveSharedConfigs($configs);
-                $this->savePluginConfigs($configs);
+                $this->saveSharedConfigs($configs, $transient);
+                $this->savePluginConfigs($configs, $transient);
                 $this->configs = $this->getConfigs();
             }
 
             return $this->configs;
         }
 
-        protected function saveSharedConfigs($configs) {
+        protected function saveSharedConfigs($configs, $transient = false) {
             $newSharedConfigs = array();
             foreach (self::$sharedVariables as $variable) {
                 if(isset($configs[$variable])) {
@@ -279,17 +294,33 @@ if (!class_exists('AddThisWordPressConnector')) {
                 }
             }
 
-            update_option($this->sharedConfigVariableName, $newSharedConfigs);
+            if ($transient) {
+                if (get_transient($this->sharedConfigVariableName) !==  false) {
+                    delete_transient($this->sharedConfigVariableName);
+                }
+
+                set_transient($this->sharedConfigVariableName, $newSharedConfigs, 120);
+            } else {
+                update_option($this->sharedConfigVariableName, $newSharedConfigs);
+            }
         }
 
-        protected function savePluginConfigs($configs) {
+        protected function savePluginConfigs($configs, $transient = false) {
             foreach (self::$sharedVariables as $variable) {
                 if(isset($configs[$variable])) {
                     unset($configs[$variable]);
                 }
             }
 
-            update_option($this->plugin->getConfigVariableName(), $configs);
+            if ($transient) {
+                if (get_transient($this->plugin->getConfigVariableName()) !==  false) {
+                    delete_transient($this->plugin->getConfigVariableName());
+                }
+
+                set_transient($this->plugin->getConfigVariableName(), $configs, 120);
+            } else {
+                update_option($this->plugin->getConfigVariableName(), $configs);
+            }
         }
 
         /**
@@ -297,7 +328,7 @@ if (!class_exists('AddThisWordPressConnector')) {
          * @return boolean true if in preview, false otherwise
          */
         public function isPreviewMode() {
-            if (isset($_GET['preview']) && $_GET['preview'] == 1) {
+            if (!empty($_GET['addthis_preview'])) {
                 return true;
             }
 
