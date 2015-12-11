@@ -18,21 +18,24 @@
  * @package WordPress
  */
 
+/** Addition for roots*/
+define('WP_ENV', 'development');
+
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define('DB_NAME', 'database_name_here');
+define('DB_NAME', 'simulacrum_nl');
 
 /** MySQL database username */
-define('DB_USER', 'username_here');
+define('DB_USER', 'simulacrum_nl');
 
 /** MySQL database password */
-define('DB_PASSWORD', 'password_here');
+define('DB_PASSWORD', 'KUKEusFJ');
 
 /** MySQL hostname */
-define('DB_HOST', 'localhost');
+define('DB_HOST', '	simulacrum.nl.mysql');
 
 /** Database Charset to use in creating database tables. */
-define('DB_CHARSET', 'utf8');
+define('DB_CHARSET', 'utf8mb4');
 
 /** The Database Collate type. Don't change this if in doubt. */
 define('DB_COLLATE', '');
@@ -46,14 +49,14 @@ define('DB_COLLATE', '');
  *
  * @since 2.6.0
  */
-define('AUTH_KEY',         'put your unique phrase here');
-define('SECURE_AUTH_KEY',  'put your unique phrase here');
-define('LOGGED_IN_KEY',    'put your unique phrase here');
-define('NONCE_KEY',        'put your unique phrase here');
-define('AUTH_SALT',        'put your unique phrase here');
-define('SECURE_AUTH_SALT', 'put your unique phrase here');
-define('LOGGED_IN_SALT',   'put your unique phrase here');
-define('NONCE_SALT',       'put your unique phrase here');
+define('AUTH_KEY',         'R+`%gsuas@fV6U^K6aB{-WMr%|x.@gxYc 6FoHzY%GJNe0XWW:Xf+!/pF:ntwzP|');
+define('SECURE_AUTH_KEY',  'g +m^2q&2;fSRzn)%59_&^QhH$J?kPn7s{I+B3`>gKQ#F]C9`(+_?}WzOj8QwcGM');
+define('LOGGED_IN_KEY',    'v(w32E<&y(+ioT0*:qgNb,V^*i)(5o1<P-SD4mcq*5OiNrjVe-ta77Aa*U!t B8+');
+define('NONCE_KEY',        '!q1u,{7Dg# 6Qv*t.9x7s.,aE|3-HPW`ig-T-Er7DZf0n%w()n.maJ$A,4+h*#x:');
+define('AUTH_SALT',        '2X1Im? eL2D|2gH_5=e`-Wi:A@PVogfZ/?b>-[3&+o8380b(Pj{v?h)0E-)_iDZ#');
+define('SECURE_AUTH_SALT', ',P$J9N!IuV<G#b:=g-?kMv4@x-`##^7pOMe#+F?hX7|:>eb0E*y0~+|#L`xXbFe ');
+define('LOGGED_IN_SALT',   'km,b TzWl{<-J&Y0ELx`4}-]O+u+KsW>HqSt<uj#)zSbo#+8rQ81]i~!#h.G9E)G');
+define('NONCE_SALT',       '|tUF8EoW7p2WGeR`wTU3P>`#,Y2|B[ev-9-OSv% g#t>Qn/[l+.0SgVt]bOFNN4R');
 
 /**#@-*/
 

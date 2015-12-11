@@ -18,6 +18,7 @@
   "homepage": "https://github.com/simulacrum-amsterdam/simulacrum-press#readme",
   "devDependencies": {
     "gulp": "^3.9.0",
+    "gulp-rename": "^1.2.2",
     "gulp-ssh": "^0.5.3",
     "gulp-util": "^3.0.7",
     "vinyl-ftp": "^0.4.5"

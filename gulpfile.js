@@ -5,6 +5,7 @@ var GulpSSH      = require('gulp-ssh');
 var sshPass      = require('./auth.js');
 var gutil = require( 'gulp-util' );
 var ftp = require( 'vinyl-ftp' );
+var rename = require("gulp-rename");
 
 // Deployment over ssh -> staging
 var SSHConfig = {
@@ -29,31 +30,47 @@ gulp.task('deploy-staging-all', function () {
 // Deployment over ftp -> production
 
 gulp.task( 'deploy-production-all', function () {
-    var conn = ftp.create( {
-        host:     'ftp.simulacrum.nl',
-        user:     sshPass.ftpUser,
-        password: sshPass.ftpPassword,
-        parallel: 2,
-        log:      gutil.log
-    } );
-    var globs = [
-        '!auth.js',
-        '!node_modules',
-        '!node_modules/**',
-        '!bower_components',
-        '!bower_components/**',
-        '!.git',
-        '!.git/**',
-        '!./wp-content/themes/simulacrum-sage/auth.js',
-        '!./wp-content/themes/simulacrum-sage/node_modules',
-        '!./wp-content/themes/simulacrum-sage/node_modules/**',
-        '!./wp-content/themes/simulacrum-sage/bower_components',
-        '!./wp-content/themes/simulacrum-sage/bower_components/**',
-        '!./wp-content/themes/simulacrum-sage/.git',
-        '!./wp-content/themes/simulacrum-sage/.git/**',
-        '**'
-    ];
-        return gulp.src( globs, { base: '.', buffer: false } )
-        .pipe( conn.newer( '/' ) )
-        .pipe( conn.dest( '/' ) );
+  gulp.src("./wp-config-remote.php")
+    .pipe(rename("./wp-config.php"))
+    .pipe(gulp.dest("./"));
+
+  var conn = ftp.create( {
+    host:     'ftp.simulacrum.nl',
+    user:     sshPass.ftpUser,
+    password: sshPass.ftpPassword,
+    parallel: 1,
+    log:      gutil.log
+  } );
+
+  var globs = [
+    '!auth.js',
+    '!node_modules',
+    '!node_modules/**',
+    '!bower_components',
+    '!bower_components/**',
+    '!.git',
+    '!.git/**',
+    '!./wp-content/themes/simulacrum-sage/auth.js',
+    '!./wp-content/themes/simulacrum-sage/node_modules',
+    '!./wp-content/themes/simulacrum-sage/node_modules/**',
+    '!./wp-content/themes/simulacrum-sage/bower_components',
+    '!./wp-content/themes/simulacrum-sage/bower_components/**',
+    '!./wp-content/themes/simulacrum-sage/.git',
+    '!./wp-content/themes/simulacrum-sage/.git/**',
+    '**'
+  ];
+
+  return gulp.src( globs, { base: '.', buffer: false } )
+    .pipe( conn.newer( '/test/' ) )
+    .pipe( conn.dest( '/test/' ) );
+
+  // gulp.src("./wp-config-local.php")
+  //   .pipe(rename("./wp-config.php"))
+  //   .pipe(gulp.dest("./"));
 } );
+
+gulp.task('local', function(){
+  return gulp.src("./wp-config-local.php")
+    .pipe(rename("./wp-config.php"))
+    .pipe(gulp.dest("./"));
+});
