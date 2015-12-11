@@ -44,6 +44,7 @@ gulp.task( 'deploy-production-all', function () {
         '!bower_components/**',
         '!.git',
         '!.git/**',
+        '!./wp-content/themes/simulacrum-sage/auth.js',
         '!./wp-content/themes/simulacrum-sage/node_modules',
         '!./wp-content/themes/simulacrum-sage/node_modules/**',
         '!./wp-content/themes/simulacrum-sage/bower_components',
