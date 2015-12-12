@@ -61,8 +61,8 @@ gulp.task( 'deploy-production-all', function () {
   ];
 
   return gulp.src( globs, { base: '.', buffer: false } )
-    .pipe( conn.newer( '/test/' ) )
-    .pipe( conn.dest( '/test/' ) );
+    .pipe( conn.newer( '/' ) )
+    .pipe( conn.dest( '/' ) );
 
   // gulp.src("./wp-config-local.php")
   //   .pipe(rename("./wp-config.php"))

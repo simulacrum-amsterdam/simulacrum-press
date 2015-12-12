@@ -32,7 +32,7 @@ define('DB_USER', 'simulacrum_nl');
 define('DB_PASSWORD', 'KUKEusFJ');
 
 /** MySQL hostname */
-define('DB_HOST', '	simulacrum.nl.mysql');
+define('DB_HOST', 'simulacrum.nl.mysql');
 
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8mb4');
