@@ -57,16 +57,13 @@ gulp.task( 'deploy-production-all', function () {
     '!./wp-content/themes/simulacrum-sage/bower_components/**',
     '!./wp-content/themes/simulacrum-sage/.git',
     '!./wp-content/themes/simulacrum-sage/.git/**',
+    '.htaccess',
     '**'
   ];
 
   return gulp.src( globs, { base: '.', buffer: false } )
     .pipe( conn.newer( '/' ) )
     .pipe( conn.dest( '/' ) );
-
-  // gulp.src("./wp-config-local.php")
-  //   .pipe(rename("./wp-config.php"))
-  //   .pipe(gulp.dest("./"));
 } );
 
 gulp.task('local', function(){
