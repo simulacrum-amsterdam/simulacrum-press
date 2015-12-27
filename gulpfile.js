@@ -7,23 +7,40 @@ var gutil = require( 'gulp-util' );
 var ftp = require( 'vinyl-ftp' );
 var rename = require("gulp-rename");
 
-// Deployment over ssh -> staging
-var SSHConfig = {
-  host: '95.85.1.182',
-  port: 22,
-  username: 'root',
-  password: sshPass.sshPassword
-}
-
-var gulpSSH = new GulpSSH({
-  ignoreErrors: false,
-  sshConfig: SSHConfig
-})
+var deployGlobs = [
+  '!auth.js',
+  '!node_modules',
+  '!node_modules/**',
+  '!bower_components',
+  '!bower_components/**',
+  '!.git',
+  '!.git/**',
+  '!./wp-content/themes/simulacrum-sage/auth.js',
+  '!./wp-content/themes/simulacrum-sage/node_modules',
+  '!./wp-content/themes/simulacrum-sage/node_modules/**',
+  '!./wp-content/themes/simulacrum-sage/bower_components',
+  '!./wp-content/themes/simulacrum-sage/bower_components/**',
+  '!./wp-content/themes/simulacrum-sage/.git',
+  '!./wp-content/themes/simulacrum-sage/.git/**',
+  '.htaccess',
+  '**'
+];
 
 gulp.task('deploy-staging-all', function () {
+  var SSHConfig = {
+    host: '95.85.1.182',
+    port: 22,
+    username: 'root',
+    password: sshPass.sshPassword
+  }
+
+  var gulpSSH = new GulpSSH({
+    ignoreErrors: false,
+    sshConfig: SSHConfig
+  })
   console.log(SSHConfig.password);
   return gulp
-    .src(['.', '!**/node_modules/**', '!**/bower_components/**', '!**/.git/**', '!**/wp-content/**'])
+    .src(deployGlobs)
     .pipe(gulpSSH.dest('/var/www/html/'))
 })
 
@@ -42,26 +59,7 @@ gulp.task( 'deploy-production-all', function () {
     log:      gutil.log
   } );
 
-  var globs = [
-    '!auth.js',
-    '!node_modules',
-    '!node_modules/**',
-    '!bower_components',
-    '!bower_components/**',
-    '!.git',
-    '!.git/**',
-    '!./wp-content/themes/simulacrum-sage/auth.js',
-    '!./wp-content/themes/simulacrum-sage/node_modules',
-    '!./wp-content/themes/simulacrum-sage/node_modules/**',
-    '!./wp-content/themes/simulacrum-sage/bower_components',
-    '!./wp-content/themes/simulacrum-sage/bower_components/**',
-    '!./wp-content/themes/simulacrum-sage/.git',
-    '!./wp-content/themes/simulacrum-sage/.git/**',
-    '.htaccess',
-    '**'
-  ];
-
-  return gulp.src( globs, { base: '.', buffer: false } )
+  return gulp.src( deployGlobs, { base: '.', buffer: false } )
     .pipe( conn.newer( '/' ) )
     .pipe( conn.dest( '/' ) );
 } );
