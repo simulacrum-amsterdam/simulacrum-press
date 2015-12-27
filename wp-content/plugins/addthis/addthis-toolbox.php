@@ -37,16 +37,7 @@ class Addthis_ToolBox
     const AT_BELOW_POST_CAT_PAGE = "at-below-post-cat-page";
     const AT_ABOVE_POST_ARCH_PAGE = "at-above-post-arch-page";
     const AT_BELOW_POST_ARCH_PAGE = "at-below-post-arch-page";
-    const AT_CONTENT_BELOW_POST_HOME = "at-below-post-homepage-recommended";
-    const AT_CONTENT_BELOW_POST_PAGE = "at-below-post-page-recommended";
     const AT_CONTENT_BELOW_POST = "at-below-post-recommended";
-    const AT_CONTENT_BELOW_CAT_PAGE = "at-below-post-cat-page-recommended";
-    const AT_CONTENT_BELOW_ARCH_PAGE = "at-below-post-arch-page-recommended";
-    const AT_CONTENT_ABOVE_POST_HOME = "at-above-post-homepage-recommended";
-    const AT_CONTENT_ABOVE_POST_PAGE = "at-above-post-page-recommended";
-    const AT_CONTENT_ABOVE_POST = "at-above-post-recommended";
-    const AT_CONTENT_ABOVE_CAT_PAGE = "at-above-post-cat-page-recommended";
-    const AT_CONTENT_ABOVE_ARCH_PAGE = "at-above-post-arch-page-recommended";
     protected $addThisConfigs;
     protected $cmsConnector;
 
@@ -91,50 +82,67 @@ class Addthis_ToolBox
         if ($this->addThisConfigs->getProfileId() && !is_404() && !is_feed()) {
             global $post;
             $postid = $post->ID;
-            $at_flag = get_post_meta( $postid, '_at_widget', TRUE );
-            if (!$configs['addthis_per_post_enabled']) {
-                $at_flag = '1';
+            $metaBoxFlag = get_post_meta($postid, '_at_widget', TRUE);
+            if (!$configs['addthis_per_post_enabled']
+                || $metaBoxFlag == ''
+                || $metaBoxFlag == '1'
+            ) {
+                $metaBoxFlag = true;
+            } else {
+                $metaBoxFlag = false;
             }
 
-            if (is_home() || is_front_page()) {
-                if($at_flag == '' || $at_flag == '1'){
-                    $content  = self::_buildDiv(self::AT_ABOVE_POST_HOME) .
-                                self::_buildDiv(self::AT_CONTENT_ABOVE_POST_HOME) .
-                                $content;
-                    $content .= self::_buildDiv(self::AT_BELOW_POST_HOME);
-                    $content .= self::_buildDiv(self::AT_CONTENT_BELOW_POST_HOME);
+            if ($metaBoxFlag) {
+                $recommendedContent = false;
+
+                $htmlComments = array();
+                $htmlCommentLocations = array('above', 'below');
+
+                foreach ($htmlCommentLocations as $location) {
+                    $htmlComments[$location] = array();
+                    $search = 'AddThis Sharing Buttons '.$location;
+                    $comment = '<!-- '.$search.' -->';
+
+                    $htmlComments[$location]['search'] = $search;
+                    $htmlComments[$location]['comment'] = $comment;
                 }
-            } else if (is_page()) {
-                if($at_flag == '' || $at_flag == '1'){
-                    $content  = self::_buildDiv(self::AT_ABOVE_POST_PAGE) .
-                                self::_buildDiv(self::AT_CONTENT_ABOVE_POST_PAGE) .
-                                $content;
-                    $content .= self::_buildDiv(self::AT_BELOW_POST_PAGE);
-                    $content .= self::_buildDiv(self::AT_CONTENT_BELOW_POST_PAGE);
+
+                if (is_home() || is_front_page()) {
+                    $aboveDivClass = self::AT_ABOVE_POST_HOME;
+                    $belowDivClass = self::AT_BELOW_POST_HOME;
+                } else if (is_page()) {
+                    $aboveDivClass = self::AT_ABOVE_POST_PAGE;
+                    $belowDivClass = self::AT_BELOW_POST_PAGE;
+                } else if (is_single()) {
+                    $aboveDivClass = self::AT_ABOVE_POST;
+                    $belowDivClass = self::AT_BELOW_POST;
+                    $recommendedContent = true;
+                }  else if (is_category()) {
+                    $aboveDivClass = self::AT_ABOVE_POST_CAT_PAGE;
+                    $belowDivClass = self::AT_BELOW_POST_CAT_PAGE;
+                }  else if (is_archive()) {
+                    $aboveDivClass = self::AT_ABOVE_POST_ARCH_PAGE;
+                    $belowDivClass = self::AT_BELOW_POST_ARCH_PAGE;
                 }
-            } else if (is_single()) {
-                if($at_flag == '' || $at_flag == '1'){
-                    $content  = self::_buildDiv(self::AT_ABOVE_POST) .
-                                self::_buildDiv(self::AT_CONTENT_ABOVE_POST, false) .
-                                $content;
-                    $content .= self::_buildDiv(self::AT_BELOW_POST);
-                    $content .= self::_buildDiv(self::AT_CONTENT_BELOW_POST, false);
+
+                if (isset($aboveDivClass)
+                    && strpos($content, $htmlComments['above']['search']) === false
+                ) {
+                    $content  = $htmlComments['above']['comment'] . self::_buildDiv($aboveDivClass) . $content;
                 }
-            }  else if (is_category()) {
-                if($at_flag == '' || $at_flag == '1'){
-                    $content  = self::_buildDiv(self::AT_ABOVE_POST_CAT_PAGE) .
-                                self::_buildDiv(self::AT_CONTENT_ABOVE_CAT_PAGE) .
-                                $content;
-                    $content .= self::_buildDiv(self::AT_BELOW_POST_CAT_PAGE);
-                    $content .= self::_buildDiv(self::AT_CONTENT_BELOW_CAT_PAGE);
+
+                if (isset($belowDivClass)
+                    && strpos($content, $htmlComments['below']['search']) === false
+                ) {
+                    $content .= $htmlComments['below']['comment'];
+                    $content .= self::_buildDiv($belowDivClass);
                 }
-            }  else if (is_archive()) {
-                if($at_flag == '' || $at_flag == '1'){
-                    $content  = self::_buildDiv(self::AT_ABOVE_POST_ARCH_PAGE) .
-                                self::_buildDiv(self::AT_CONTENT_ABOVE_ARCH_PAGE) .
-                                $content;
-                    $content .= self::_buildDiv(self::AT_BELOW_POST_ARCH_PAGE);
-                    $content .= self::_buildDiv(self::AT_CONTENT_BELOW_ARCH_PAGE);
+
+                if ($recommendedContent
+                    && strpos($inputHtml, 'AddThis Recommended Content below') === false
+                ) {
+                  $content .= '<!-- AddThis Recommended Content below --> ' ;
+                  $content .= self::_buildDiv(self::AT_CONTENT_BELOW_POST, false);
                 }
             }
         }

@@ -88,7 +88,13 @@ class Addthis_Horizontal_Recommended_Content_Widget extends WP_Widget
                 '<input id="'.$this->get_field_id('title').'" '.
                        'name="'.$this->get_field_name('title').'" '.
                        'type="text" value="'.esc_attr($title).'">'.
-             "</p>";
+             "</p>
+              <p>
+                  <small>
+                      "._addthis_eula_text(esc_html__('Save'))."
+                  </small>
+              </p>
+             ";
     }
 
     /**
@@ -188,7 +194,13 @@ class Addthis_Vertical_Recommended_Content_Widget extends WP_Widget
                 '<input id="'.$this->get_field_id('title').'" '.
                        'name="'.$this->get_field_name('title').'" '.
                        'type="text" value="'.esc_attr($title).'">'.
-             "</p>";
+             "</p>
+              <p>
+                  <small>
+                      "._addthis_eula_text(esc_html__('Save'))."
+                  </small>
+              </p>
+             ";
     }
 
     /**

@@ -25,9 +25,9 @@ if (!class_exists('AddThisWordPressSharingButtonsPlugin')) {
     Class AddThisWordPressSharingButtonsPlugin {
         // implements AddThisWordPressPluginInterface {
 
-        static $version = '5.2.0';
+        static $version = '5.2.2';
         static $settingsPageId = 'addthis_social_widget';
-        static $name = "AddThis Sharing Buttons";
+        static $name = "Share Buttons by AddThis";
         static $productPrefix = 'wpp';
         static $oldConfigVariableName = 'addthis_settings';
         static $configVariableName = 'addthis_sharing_buttons_settings';

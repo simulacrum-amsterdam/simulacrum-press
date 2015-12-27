@@ -258,10 +258,6 @@ class Addthis_Wordpress
                 >
                     <div class="Header">
                         <h1><em>AddThis</em> Sharing Buttons</h1>';
-        if (!_addthis_is_csr_form()) {
-            $html .= '<span class="preview-save-btns">' . _addthis_settings_buttons(false) . '</span>';
-        }
-
         $html .= '</div>';
 
         if ($this->_upgrade && !$this->addThisConfigs->getProfileId()) {
@@ -291,6 +287,11 @@ class Addthis_Wordpress
                     <div class="Btn-container-end">
                         ' . _addthis_settings_buttons(false) . '
                     </div>
+                    <p>
+                        <small>
+                            '._addthis_eula_text().'
+                        </small>
+                    </p>
                 </form>';
         }
 
@@ -439,9 +440,22 @@ add_action('init', 'Addthis_Wordpress_early', 0);
  */
 function Addthis_Wordpress_early()
 {
+    global $addThisSharingButtonsPluginObject;
     global $AddThis_addjs_sharing_button_plugin;
     global $addThisConfigs;
     global $cmsConnector;
+
+    if (!isset($addThisSharingButtonsPluginObject)) {
+      $addThisSharingButtonsPluginObject = new AddThisWordPressSharingButtonsPlugin();
+    }
+
+    if (!isset($cmsConnector)) {
+      $cmsConnector = new AddThisWordPressConnector($addThisSharingButtonsPluginObject);
+    }
+
+    if (!isset($addThisConfigs)) {
+      $addThisConfigs = new AddThisConfigs($cmsConnector);
+    }
 
     if (!isset($AddThis_addjs_sharing_button_plugin)) {
         include 'addthis_addjs_new.php';

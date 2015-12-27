@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name: AddThis Sharing Buttons
+ * Plugin Name: Share Buttons by AddThis
  * Plugin URI: http://www.addthis.com
  * Description: Use the AddThis suite of website tools which includes sharing, following, recommended content, and conversion tools to help you make your website smarter. With AddThis, you can see how your users are engaging with your content, provide a personalized experience for each user and encourage them to share, subscribe or follow.
- * Version: 5.2.0
+ * Version: 5.2.2
  * Author: The AddThis Team
  * Author URI: http://www.addthis.com/
  * License: GPL2
@@ -96,7 +96,7 @@ function pluginActivationNotice()
         );
         $html = '<div class="addthis_updated wrap">';
         $html .= '<span>'.
-                    'Congrats! You\'ve Installed AddThis Sharing Buttons'.
+                    'Congrats! You\'ve Installed Share Buttons by AddThis'.
                   '</span>';
         $html .= '<span><a class="addthis_configure" href="'
                 . $cmsConnector->getSettingsPageUrl() .
@@ -174,9 +174,23 @@ if ($addthis_options['addthis_plugin_controls'] == "AddThis") {
     // addthis_addjs.php is a standard class shared by the various AddThis plugins to make it easy for us to include our bootstrapping JavaScript only once. Priority should be lowest for Share plugin.
     add_action('init', 'addthis_early', 0);
     function addthis_early(){
+        global $addThisSharingButtonsPluginObject;
         global $AddThis_addjs_sharing_button_plugin;
         global $addThisConfigs;
         global $cmsConnector;
+
+        if (!isset($addThisSharingButtonsPluginObject)) {
+          $addThisSharingButtonsPluginObject = new AddThisWordPressSharingButtonsPlugin();
+        }
+
+        if (!isset($cmsConnector)) {
+          $cmsConnector = new AddThisWordPressConnector($addThisSharingButtonsPluginObject);
+        }
+
+        if (!isset($addThisConfigs)) {
+          $addThisConfigs = new AddThisConfigs($cmsConnector);
+        }
+
         if (!isset($AddThis_addjs_sharing_button_plugin)){
             require('addthis_addjs_new.php');
             $AddThis_addjs_sharing_button_plugin = new AddThis_addjs_sharing_button_plugin($addThisConfigs, $cmsConnector);
@@ -265,7 +279,6 @@ if ($addthis_options['addthis_plugin_controls'] == "AddThis") {
     );
 
 
-    //add_filter('the_title', 'at_title_check');
     /**
      * @deprecated
      * @todo Add _deprecated_function notice.
@@ -587,7 +600,7 @@ if ($addthis_options['addthis_plugin_controls'] == "AddThis") {
         $setupMessage = '
             <div class="updated addthis_setup_nag">
                 <p>
-                    Configure the AddThis Sharing Buttons plugin to enable users to share your content around the web.
+                    Configure the Share Buttons by AddThis plugin to enable users to share your content around the web.
                     <br />
                     <a href="' . $cmsConnector->getSettingsPageUrl() . '">Configuration options</a>
                     |
@@ -599,7 +612,7 @@ if ($addthis_options['addthis_plugin_controls'] == "AddThis") {
         $updatedMessage = '
             <div class="updated addthis_setup_nag">
                 <p>
-                    We have updated the options for the AddThis Sharing Buttons plugin. Check out the
+                    We have updated the options for the Share Buttons by AddThis plugin. Check out the
                     <a href="' . $cmsConnector->getSettingsPageUrl() . '">AddThis settings page</a> to see the new styles and options.
                     <br />
                     <a href="' . $cmsConnector->getSettingsPageUrl() . '">See New Options</a>
@@ -953,10 +966,6 @@ if ($addthis_options['addthis_plugin_controls'] == "AddThis") {
                 add_filter('get_the_excerpt', 'addthis_display_social_widget_excerpt', 11);
             }
 
-            if (!empty($options['addthis_aftertitle'])) {
-                add_filter('the_title', 'addthis_display_after_title', 11);
-            }
-
             add_filter('the_content', 'addthis_display_social_widget', 15);
 
         }
@@ -1091,9 +1100,13 @@ if ($addthis_options['addthis_plugin_controls'] == "AddThis") {
         global $addThisConfigs;
         global $addthis_styles;
         global $addthis_new_styles;
+        $search = 'AddThis Sharing Buttons below';
+        $comment = '<!-- '.$search.' -->';
 
         remove_filter('get_the_excerpt', 'addthis_late_widget');
-        if (!_addthis_excerpt_buttons_enabled()) {
+        if (!_addthis_excerpt_buttons_enabled()
+            && strpos($link_text, $search) !== false
+        ) {
             return $link_text;
         }
 
@@ -1128,7 +1141,7 @@ if ($addthis_options['addthis_plugin_controls'] == "AddThis") {
 
         $buttons = sprintf($template, addthis_get_identifier());
 
-        return  $link_text . $buttons;
+        return  $link_text . $comment . $buttons;
     }
 
 
@@ -1265,6 +1278,18 @@ if ($addthis_options['addthis_plugin_controls'] == "AddThis") {
         $displayAbove = apply_filters('addthis_post_exclude', $displayAbove);
         $displayBelow = apply_filters('addthis_post_exclude', $displayBelow);
 
+        $htmlComments = array();
+        $htmlCommentLocations = array('above', 'below');
+
+        foreach ($htmlCommentLocations as $location) {
+            $htmlComments[$location] = array();
+            $search = 'AddThis Sharing Buttons '.$location;
+            $comment = '<!-- '.$search.' -->';
+
+            $htmlComments[$location]['search'] = $search;
+            $htmlComments[$location]['comment'] = $comment;
+        }
+
         remove_filter('wp_trim_excerpt', 'addthis_remove_tag', 9, 1);
         remove_filter('get_the_excerpt', 'addthis_late_widget');
         $identifier =  addthis_get_identifier();
@@ -1275,8 +1300,10 @@ if ($addthis_options['addthis_plugin_controls'] == "AddThis") {
             && $options['above'] != 'disable'
             && $displayAbove
             && (!$excerpt || _addthis_excerpt_buttons_enabled_above())
+            && strpos($content, $htmlComments['above']['search']) === false
         ) {
-            $above = addthis_display_widget_above($styles, $options);
+            $above = $htmlComments['above']['comment'];
+            $above .= addthis_display_widget_above($styles, $options);
         } elseif ($displayAbove) {
             $above = '';
         } else {
@@ -1288,8 +1315,10 @@ if ($addthis_options['addthis_plugin_controls'] == "AddThis") {
             && $options['below'] != 'disable'
             && $displayBelow
             && (!$excerpt || _addthis_excerpt_buttons_enabled_below())
+            && strpos($content, $htmlComments['below']['search']) === false
         ) {
-            $below = addthis_display_widget_below($styles, $options);
+            $below = $htmlComments['below']['comment'];
+            $below .= addthis_display_widget_below($styles, $options);
         } elseif (   $excerpt
                   && $displayBelow
                   && $options['below'] != 'none'
@@ -1303,12 +1332,17 @@ if ($addthis_options['addthis_plugin_controls'] == "AddThis") {
             $below = '';
         }
 
-        $at_flag = get_post_meta( $post->ID, '_at_widget', TRUE );
-        if (!$options['addthis_per_post_enabled']) {
-            $at_flag = '1';
+        $metaBoxFlag = get_post_meta($post->ID, '_at_widget', TRUE);
+        if (!$options['addthis_per_post_enabled']
+            || $metaBoxFlag == ''
+            || $metaBoxFlag == '1'
+        ) {
+            $metaBoxFlag = true;
+        } else {
+            $metaBoxFlag = false;
         }
 
-        if ($at_flag !== '0') {
+        if ($metaBoxFlag) {
             if ($displayAbove && isset($above)) {
                 $content = sprintf($above, $identifier) . $content;
             }
@@ -1590,10 +1624,6 @@ EOF;
 
                 <div class="Header">
                     <h1><em>AddThis</em> Sharing Buttons</h1>
-
-                    <span class="preview-save-btns">
-                        <?php echo _addthis_settings_buttons(); ?>
-                    </span>
                 </div>
 
                 <?php
@@ -1607,6 +1637,11 @@ EOF;
 
                 <div class="Btn-container-end">
                     <?php echo _addthis_settings_buttons(); ?>
+                    <p>
+                        <small>
+                            <?php echo _addthis_eula_text(); ?>
+                        </small>
+                    </p>
                 </div>
 
             </form>
@@ -2378,7 +2413,7 @@ function _addthis_display_options_card() {
                                         (Recommended)
                                     </span>
                                 </label>
-                                <span class="at-wp-tooltip" tooltip="When checked, your site will load before AddThis sharing buttons are added. If unchecked, your site will not load until AddThis buttons (and AddThis JavaScript) have been loaded by your vistors.">?</span>
+                                <span class="at-wp-tooltip" tooltip="When checked, your site will load before share buttons by AddThis are added. If unchecked, your site will not load until AddThis buttons (and AddThis JavaScript) have been loaded by your vistors.">?</span>
                             </li>
                             <li>
                                 <input
@@ -2405,7 +2440,7 @@ function _addthis_display_options_card() {
                                         <strong>' . translate("Enhanced accessibility", 'addthis_trans_domain') . '</strong>
                                     </span>
                                 </label>
-                                <span class="at-wp-tooltip" tooltip="Also known as 508 compliance. If checked, clicking an AddThis sharing button will open a new window to a page that is keyboard navigable for people with disabilities.">?</span>
+                                <span class="at-wp-tooltip" tooltip="Also known as 508 compliance. If checked, clicking a share button by AddThis will open a new window to a page that is keyboard navigable for people with disabilities.">?</span>
                             </li>
                         </ul>
                     </li>
@@ -2652,7 +2687,8 @@ function _addthis_settings_buttons($includePreview = true) {
         name="submit"
         value="Save Changes"
         class="Btn Btn-blue addthis-submit-button"
-    />';
+    />
+    ';
 
     $html .= $saveHtml;
 

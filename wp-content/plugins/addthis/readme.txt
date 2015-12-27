@@ -1,15 +1,15 @@
-=== AddThis Sharing Buttons ===
+=== Share Buttons by AddThis ===
 Contributors: abramsm, srijith.v, vipinss, dnrahamim, jgrodel, bradaddthiscom, mkitzman, addthis_paul, addthis_matt, addthis_elsa, ribin_addthis, AddThis_Mike
 Tags: bookmarking, email sharing, facebook, linkedin, pinterest, share, sharing buttons, social marketing, social tools, twitter, whatsapp
 Requires at least: 3.0
 Tested up to: 4.3
-Stable tag: 5.2.0
+Stable tag: 5.2.2
 
-AddThis provides the best sharing tools to help you make your website smarter.
+Share buttons from AddThis help you get more traffic from sharing through social networks.
 
 == Description ==
 
-The best sharing and following tools on the web are now available for your WordPress site. Promote your content easily by sharing to over 200 of the most popular social networking and bookmarking sites (like Facebook, Twitter, Pinterest, Google+, WhatsApp, LinkedIn and more). Clean, customizable and simple social buttons are unobtrusive, quick to load and recognized all over the web.
+The best share buttons on the web are now available for your WordPress site. Promote your content easily by sharing to over 200 of the most popular social networking and bookmarking sites (like Facebook Share, Facebook Like, Twitter, Pinterest, Google+, WhatsApp, LinkedIn and more). Clean, customizable and simple share buttons are unobtrusive, quick to load and recognized all over the web.
 
 == Installation ==
 
@@ -75,6 +75,15 @@ In the screen options you can enable the AddThis meta box. Check the box and sav
 7. Customization options on the AddThis Dashboard
 
 == Changelog ==
+
+= 5.2.2 =
+* Fix for duplicate sharing tools showing up due to weird caching plugin behavior
+* Fix for notices in addthis_social_widget.php on lines 1291 & 1306
+* Fix for changes in wp-cli 0.21.1
+
+= 5.2.1 =
+* Renaming the plugin from AddThis Sharing Buttons to Share Buttons by AddThis
+* Adding AddThis EULA
 
 = 5.2.0 =
 * New feature: AddThis Sharing Buttons metabox supported on custom post types. This meta box is used to disable sharing buttons on posts when editing them.
@@ -393,6 +402,12 @@ Fixed nondeterministic bug with the_title(), causing the title to occasionally a
 
 
 == Upgrade Notice ==
+
+= 5.2.2 =
+Dupliate button issues? This may help. Yeah, we know we said this last time. But for real now. Also, fixes for compatibility with wp-cli 0.21.1.
+
+= 5.2.1 =
+Dupliate button issues? This may help. Also, we renamed the plugin from AddThis Sharing Buttons to Share Buttons by AddThis.
 
 = 5.2.0 =
 * New feature: AddThis Sharing Buttons metabox supported on custom post types. This meta box is used to disable sharing buttons on posts when editing them.

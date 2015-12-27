@@ -33,7 +33,7 @@ class AddThisSidebarWidget extends WP_Widget {
 
         $widget_ops = array(
             'classname'   => 'atwidget',
-            'description' => 'Make it wasy for your users to share content to over 300 destinations'
+            'description' => 'Make it easy for your users to share content to over 300 destinations'
         );
 
         /* Widget control settings. */
@@ -42,7 +42,7 @@ class AddThisSidebarWidget extends WP_Widget {
         /* Create the widget. */
         parent::__construct(
             'addthis-widget',
-            'AddThis Sharing Buttons',
+            'Share Buttons by AddThis',
             $widget_ops,
             $control_ops
         );
@@ -148,6 +148,11 @@ class AddThisSidebarWidget extends WP_Widget {
                     </div>';
             }
                 ?>
+                    <p>
+                        <small>
+                            <?php echo _addthis_eula_text(esc_html__('Save')); ?>
+                        </small>
+                    </p>
         <?php
     }
 

@@ -278,7 +278,7 @@ Class AddThis_addjs_sharing_button_plugin{
         foreach ($postTypes as $postType) {
             add_meta_box(
                 'at_widget',
-                __('AddThis Sharing Buttons'),
+                __('Share Buttons by AddThis'),
                 array($this, 'add_at_flag_meta_box'),
                 $postType,
                 'advanced',

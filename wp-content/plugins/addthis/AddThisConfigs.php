@@ -486,7 +486,7 @@ if (!class_exists('AddThisConfigs')) {
             }
 
             // including select configs
-            if (isset($this->configs['plugin_mode'])) {
+            if (isset($this->configs['addthis_plugin_controls'])) {
                 $pluginInfo['plugin_mode'] = $this->configs['addthis_plugin_controls'];
             }
 

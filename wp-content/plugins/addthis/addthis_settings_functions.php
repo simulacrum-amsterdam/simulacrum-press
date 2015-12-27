@@ -471,6 +471,11 @@ function _addthis_excerpt_buttons_enabled() {
     return $enabled;
 }
 
+function _addthis_eula_text($buttonName = 'Save Changes') {
+  $eula = 'By clicking "'.$buttonName.'", you certify that you are at least 13 years old, and agree to the AddThis <a href="http://www.addthis.com/privacy/privacy-policy">Privacy Policy</a> and <a href="http://www.addthis.com/tos">Terms of Service</a>.';
+  return $eula;
+}
+
 if (!function_exists('array_replace_recursive')) {
   function array_replace_recursive($array, $array1) {
     if (!function_exists('addthis_recurse')) {
