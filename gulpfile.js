@@ -15,6 +15,7 @@ var deployGlobs = [
   '!bower_components/**',
   '!.git',
   '!.git/**',
+  '!./wp-content/uploads/**',
   '!./wp-content/themes/simulacrum-sage/auth.js',
   '!./wp-content/themes/simulacrum-sage/node_modules',
   '!./wp-content/themes/simulacrum-sage/node_modules/**',
