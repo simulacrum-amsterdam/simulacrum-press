@@ -25,7 +25,7 @@
 		
 	echo ' ' . __('Date', 'wp_statistics' ) . ': ';
 
-	echo '<input type="hidden" name="page" value="wps_top_visitors_menu">' . "\r\n";
+	echo '<input type="hidden" name="page" value="' . WP_STATISTICS_TOP_VISITORS_PAGE . '">' . "\r\n";
 	echo '<input type="text" size="10" name="statsdate" id="statsdate" value="' . htmlentities( $statsdate, ENT_QUOTES ) . '" placeholder="' . __('MM/DD/YYYY', 'wp_statistics') .'"> <input type="submit" value="'.__('Go', 'wp_statistics').'" class="button-primary">' . "\r\n";
 
 	echo '</form>' . "\r\n";
@@ -37,12 +37,12 @@
 		<div class="metabox-holder">
 			<div class="meta-box-sortables">
 				<div class="postbox">
+					<div class="handlediv" title="<?php _e('Click to toggle', 'wp_statistics'); ?>"><br /></div>
+					<h3 class="hndle"><span><?php _e('Top Visitors', 'wp_statistics'); ?></span></h3>
 					<div class="inside">
-						<div class="inside">
 						
 						<?php wp_statistics_generate_top_visitors_postbox_content($ISOCountryCode, $statsdate, 100, false); ?>
 					
-						</div>
 					</div>
 				</div>
 			</div>

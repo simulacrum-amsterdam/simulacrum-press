@@ -16,7 +16,7 @@
 
 		list( $daysToDisplay, $rangestart_utime, $rangeend_utime ) = wp_statistics_date_range_calculator( $daysToDisplay, $rangestart, $rangeend );
 	
-		wp_statistics_date_range_selector( 'wps_hits_menu', $daysToDisplay );
+		wp_statistics_date_range_selector( WP_STATISTICS_HITS_PAGE, $daysToDisplay );
 	?>
 
 	<div class="postbox-container" style="width: 100%; float: left; margin-right:20px">
@@ -32,27 +32,28 @@
 <?php								
 								$visit_total = 0;
 								$visitor_total = 0;
+								$daysInThePast = ( time() - $rangeend_utime ) / 86400;
 								
 								echo "var visit_data_line = [";
 								
-								for( $i=$daysToDisplay; $i>=0; $i--) {
-									$stat = wp_statistics_visit('-'.$i, true);
+								for( $i = $daysToDisplay; $i >= 0; $i-- ) {
+									$working_date = $WP_Statistics->Real_Current_Date( 'Y-m-d', '-' . $i, $rangeend_utime );
+									$stat = wp_statistics_visit( '-' . (int)( $i + $daysInThePast ), true );
 									$visit_total += $stat;
 									
-									echo "['" . $WP_Statistics->Real_Current_Date('Y-m-d', '-'.$i, $rangeend_utime) . "'," . $stat . "], ";
-									
+									echo "['" . $working_date . "'," . $stat . "], ";
 								}
 
 								echo "];\n";
 
 								echo "var visitor_data_line = [";
 								
-								for( $i=$daysToDisplay; $i>=0; $i--) {
-									$stat = wp_statistics_visitor('-'.$i, true);
+								for( $i = $daysToDisplay; $i >= 0; $i-- ) {
+									$working_date = $WP_Statistics->Real_Current_Date( 'Y-m-d', '-' . $i, $rangeend_utime );
+									$stat = wp_statistics_visitor( '-' . (int)( $i + $daysInThePast ), true );
 									$visitor_total += $stat;
 									
-									echo "['" . $WP_Statistics->Real_Current_Date('Y-m-d', '-'.$i, $rangeend_utime) . "'," . $stat . "], ";
-									
+									echo "['" . $working_date . "'," . $stat . "], ";
 								}
 
 								echo "];\n";

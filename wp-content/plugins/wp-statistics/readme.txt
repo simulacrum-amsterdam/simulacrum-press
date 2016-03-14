@@ -3,8 +3,8 @@ Contributors: mostafa.s1990, GregRoss
 Donate link: http://wp-statistics.com/donate/
 Tags: statistics, stats, visit, visitors, chart, browser, blog, today, yesterday, week, month, year, total, post, page, sidebar, summary, feedburner, hits, pagerank, google, alexa, live visit
 Requires at least: 3.0
-Tested up to: 4.4
-Stable tag: 9.6.6
+Tested up to: 4.4.2
+Stable tag: 10.0.5
 License: GPL3
 
 Complete statistics for your WordPress site.
@@ -84,9 +84,6 @@ Make sure you've downloaded the GeoIP database and the GeoIP code is enabled.
 
 Also, if your running an internal test site with non-routable IP addresses (like 192.168.x.x or 172.28.x.x or 10.x.x.x), these addresses will come up as unknown always.
 
-= I was using V3.2 and now that I've upgraded my visitors and visits have gone way down? =
-The webcrawler detection code has been fixed and will now exclude them from your stats, don't worry, it now reflects a more accurate view of actual visitors to your site.
-
 = GeoIP is enabled but no hits are being counted? =
 The GeoIP code requires several things to function, PHP 5.3 or above, the bcmath extension, the cURL extension and PHP cannot be running in safe mode.  All of these conditions are checked for but there may be additional items required.  Check your PHP log files and see if there are any fatal errors listed.
 
@@ -100,7 +97,9 @@ Be very careful to set the subnet mask correctly on the subnet list, it is very 
 Make sure you have WordPress configured correctly for SMTP and also check your WP Cron is working correctly.  You can use [Cron View](http://wordpress.org/plugins/cron-view) to examine your WP Cron table and see if there are any issues.
 
 = Does WP Statistics support multi-site? =
-WP Statistics hasn't been tested with multi-site and there have been some issues reported with getting it enabled correctly on all sites in a network.
+WP Statistics doesn't officially support multi-site however it does have limited functionally associated with it and should function without issue.  However no support is provided at this time.
+
+Version 8.8 is the first release that should install, upgrade and remove correctly on mutli-site as well as have some very basic support for the network admin menu.  This should not be taken as an indication that WP Statistics fully support for multi-site, but only as a very preliminary first step.
 
 = Does WP Statistics report on post hits? =
 Yes, version 6.0 has introduced page hit statistics!
@@ -235,72 +234,60 @@ If you still have issues open a new thread on the support forum and we'll try an
 10. View latest search engine referrers Statistics page.
 
 == Upgrade Notice ==
-= 9.6.6 =
-Security update release, please update Immediately.  Have you updated your database indexes and search table?  If not please go to Statistics->Optimization->Database after you have installed the update and run the updates.
-
-= 9.6.5 =
-Have you updated your database indexes and search table?  If not please go to Statistics->Optimization->Database after you have installed the update and run the updates.
-
-= 9.6.4 =
-Have you updated your database indexes and search table?  If not please go to Statistics->Optimization->Database after you have installed the update and run the updates.
-
-= 9.6.3 =
-Have you updated your database indexes and search table?  If not please go to Statistics->Optimization->Database after you have installed the update and run the updates.
-
-= 9.6.2 =
-This is a security release, please upgrade immediately.
-Have you updated your database indexes and search table?  If not please go to Statistics->Optimization->Database after you have installed the update and run the updates.
-
-= 9.6.1 =
-Have you updated your database indexes and search table?  If not please go to Statistics->Optimization->Database after you have installed the update and run the updates.
-
-= 9.6 =
-Have you updated your database indexes and search table?  If not please go to Statistics->Optimization->Database after you have installed the update and run the updates.
-
-= 9.5.3 =
-BACKUP YOUR DATABASE BEFORE INSTALLING!  This release alters the table structure of the database.  This release creates a new table for search engine/words for performance improvements, however you must convert your data to the new format via the Statistics->Optimization->Database tab.
-
-= 9.5.2 =
-BACKUP YOUR DATABASE BEFORE INSTALLING!  This release alters the table structure of the database.  This release creates a new table for search engine/words for performance improvements, however you must convert your data to the new format via the Statistics->Optimization->Database tab.
-
-= 9.5.1 =
-BACKUP YOUR DATABASE BEFORE INSTALLING!  This release alters the table structure of the database.  This release creates a new table for search engine/words for performance improvements, however you must convert your data to the new format via the Statistics->Optimization->Database tab.
-
-= 9.5 =
-BACKUP YOUR DATABASE BEFORE INSTALLING!  This release alters the table structure of the database.  This release creates a new table for search engine/words for performance improvements, however you must convert your data to the new format via the Statistics->Optimization->Database tab.
-
-= 9.4.1 = 
-This is a security release, please upgrade immediately.
-If upgrading from pre-9.0, please make sure to backup your database before installing.  Once installed, please go to Statistics->Optimization->Database and add the visits index.
-
-= 9.4 = 
-If upgrading from pre-9.0, please make sure to backup your database before installing.  Once installed, please go to Statistics->Optimization->Database and add the visits index.
-
-= 9.3.1 = 
-If upgrading from pre-9.0, please make sure to backup your database before installing.  Once installed, please go to Statistics->Optimization->Database and add the visits index.
-
-= 9.3 = 
-If upgrading from pre-9.0, please make sure to backup your database before installing.  Once installed, please go to Statistics->Optimization->Database and add the visits index.
-
-= 9.2 = 
-If upgrading from pre-9.0, please make sure to backup your database before installing.  Once installed, please go to Statistics->Optimization->Database and add the visits index.
-
-= 9.1.3 =
-If upgrading from pre-9.0, please make sure to backup your database before installing.  Once installed, please go to Statistics->Optimization->Database and add the visits index.
-
-= 9.1.2 =
-If upgrading from pre-9.0, please make sure to backup your database before installing.  Once installed, please go to Statistics->Optimization->Database and add the visits index.
-
-= 9.1.1 =
-If upgrading from pre-9.0, please make sure to backup your database before installing.  Once installed, please go to Statistics->Optimization->Database and add the visits index.
-
-= 9.1 =
-BACKUP YOUR DATABASE BEFORE INSTALLING!  This release alters the table structure of the database.  Once installed, please go to Statistics->Optimization->Database and add the visits index.
-
-= 9.0 =
-This release updates some core code to do with timezones, hence the change to version 9.0, if you see any issues with timezones, please let us know.  In addition, you may see an increase in your visits count as a race condition that dropped some visits has been resolved.
+= 10.0 =
+The overview page has been completely rewritten!  If you had set custom values for what widgets to display and in what order on your overview page you will have to re-select them using the "Screen Options" tab on the overview page and by dragging and dropping the widgets in to place.
 
 == Changelog ==
+= 10.0.5 =
+* Release Date: February 5, 2016
+* Fixed: Date range selector display after entering a custom date range.
+* Fixed: Date ranges that ended in the past displaying the wrong visit/visitors data.
+
+= 10.0.4 =
+* Release Date: January 21, 2016
+* Fixed: Recent Visitors widget in the dashboard did not work.
+* Fixed: Top Visitors in Overview page would not reload.
+* Fixed: Links for yesterday and older visitors count went to wrong page.
+* Fixed: Typo in purge code that caused a fatal error.
+
+= 10.0.3 =
+* Release Date: January 19, 2016
+* Updated: Google map API now always uses https.
+* Fixed: Google map error that broken the overview page display of charts and the map.
+
+= 10.0.2 =
+* Release Date: January 19, 2016
+* Added: Additional error checking on widget load so they will retry if there is a failure.
+* Fixed: Added code to flush out invalid widget order user meta.
+* Fixed: Include Fatal Error if corrupt data was passed to the ajax widget code.
+
+= 10.0.1 =
+* Release Date: January 18, 2016
+* Fixed: If you re-ordered the widgets on the overview screen and then reloaded the page, all the widgets would disappear.
+
+= 10.0 =
+* Release Date: January 15, 2016
+* Added: Widgets now support reloading on overview and dashboard screen.
+* Updated: Overview screen now loads widgets dynamically to reduce memory usage.
+* Updated: Dashboard widgets now load dynamically.
+* Updated: Enabling dashboard widgets now no longer require a page load to display the contents.
+* Updated: Replaced the old eye icon and "more..." link on the right of the title on the overview widgets with a new icon on the right beside the open/close icon.
+* Fixed: Removed extraneous single quote in SQL statement on referrers page, thanks jhertel.
+* Fixed: Order of parameters in referrers page when viewing individual referrers was incorrect and resulted in a blank list.
+* Fixed: UpdatedSQL for last post date detection to order by post_date instead of ID as someone could enter a date in the past for their publish date.  Thanks PC1271 for the fix.
+* Fixed: The referrers widget would only select the first 100k records due to a limit in PHP/MySQL, it will now select all records.
+* Removed: Widget selection and ordering from the settings page, the "Screen Options" tab can now be used on the enabled/disable widgets and drag and drop will remember their location.
+* Removed: Overview page memory usage in the optimization page as it is no longer relevant.
+
+= 9.7 =
+* Release Date: December 30, 2015
+* Added: A date range to the referrers page.
+* Added: A Date range selector to browsers page.
+* Updated: General SQL cleanups.
+* Updated: browscap library to 2.1.1.
+* Updated: GeoIP library to 2.3.3.
+* Updated: phpUserAgent library to 0.5
+
 = 9.6.6 =
 * Release Date: November 1, 2015
 * Updated: Use timezone corrected dates for date pickers.

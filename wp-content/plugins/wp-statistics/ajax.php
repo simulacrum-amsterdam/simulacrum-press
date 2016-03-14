@@ -187,3 +187,121 @@ function wp_statistics_purge_visitor_hits_action_callback() {
 	wp_die(); // this is required to terminate immediately and return a proper response
 }
 add_action( 'wp_ajax_wp_statistics_purge_visitor_hits', 'wp_statistics_purge_visitor_hits_action_callback' );
+
+// Setup an AJAX action to purge visitors with more than a defined number of hits.
+function wp_statistics_get_widget_contents_callback() {
+	GLOBAL $WP_Statistics, $wpdb; // this is how you get access to the database
+
+	$widgets = array( 'about', 'browsers', 'map', 'countries', 'hits', 'hitsmap', 'page', 'pages', 'quickstats', 'recent', 'referring', 'search', 'summary', 'top.visitors', 'words' );
+
+	$view_cap = wp_statistics_validate_capability( $WP_Statistics->get_option('read_capability', 'manage_options') );
+
+	if( current_user_can( $view_cap ) ) {
+		$widget = '';
+		
+		if( array_key_exists( 'widget', $_POST ) ) { 
+			// Get the widget we're going to display.
+			
+			if( in_array( $_POST['widget'], $widgets ) ) {
+				$widget = $_POST['widget'];
+			}
+		}
+
+		if( 'map' == $widget || 'hitsmap' == $widget ) {
+			if( $WP_Statistics->get_option( 'map_type' ) == 'jqvmap' ) {
+				$widget = 'jqv.map';
+			}
+			else {
+				$widget = 'google.map';
+			}
+		}
+		
+		if( '' == $widget ) { 
+			_e('No matching widget found!', 'wp_statistics');
+			wp_die();
+		}
+		
+		$ISOCountryCode = $WP_Statistics->get_country_codes();
+		$search_engines = wp_statistics_searchengine_list();
+
+		require( $WP_Statistics->plugin_dir . '/includes/log/widgets/' . $widget . '.php' );
+		
+		switch( $widget ) {
+			case 'summary':
+				wp_statistics_generate_summary_postbox_content($search_engines);
+				
+				break;
+			case 'quickstats':
+				wp_statistics_generate_quickstats_postbox_content($search_engines);
+				
+				break;
+			
+			case 'browsers':
+				wp_statistics_generate_browsers_postbox_content();
+			
+				break;
+			case 'referring':
+				wp_statistics_generate_referring_postbox_content();
+			
+				break;
+			case 'countries':
+				wp_statistics_generate_countries_postbox_content($ISOCountryCode);
+			
+				break;
+			case 'jqv.map':
+			case 'google.map':
+				wp_statistics_generate_map_postbox_content($ISOCountryCode);
+				
+				break;
+			case 'hits':
+				wp_statistics_generate_hits_postbox_content();
+			
+				break;
+			case 'search':
+				wp_statistics_generate_search_postbox_content($search_engines);
+			
+				break;
+			case 'words':
+				wp_statistics_generate_words_postbox_content($ISOCountryCode);
+			
+				break;
+			case 'page':
+				if( array_key_exists( 'page-id', $_POST ) ) { 
+					$pageid = (int)$_POST['page-id'];
+					wp_statistics_generate_page_postbox_content( null, $pageid );
+				}
+				
+				break;
+			case 'pages':
+				list( $total, $uris ) = wp_statistics_get_top_pages();
+				wp_statistics_generate_pages_postbox_content($total, $uris);
+			
+				break;
+			case 'recent':
+				wp_statistics_generate_recent_postbox_content($ISOCountryCode);
+			
+				break;
+			case 'top.visitors':
+				$format = null;
+				
+				if( array_key_exists( 'format', $_POST ) ) { 
+					$format = 'compact';
+				}
+					
+				wp_statistics_generate_top_visitors_postbox_content($ISOCountryCode, 'today', 10, $format);
+			
+				break;
+			case 'about':
+				wp_statistics_generate_about_postbox_content($ISOCountryCode);
+			
+				break;
+			default:
+				_e( 'ERROR: Widget not found!', 'wp_statistics' );
+		}		
+	} else {
+		_e('Access denied!', 'wp_statistics');
+	}
+	
+	wp_die(); // this is required to terminate immediately and return a proper response
+}
+add_action( 'wp_ajax_wp_statistics_get_widget_contents', 'wp_statistics_get_widget_contents_callback' );

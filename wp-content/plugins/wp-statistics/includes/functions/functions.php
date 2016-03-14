@@ -25,7 +25,7 @@
 		
 			// Fetch the results from the database.
 			$result = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}statistics_visit WHERE `last_counter` = '{$WP_Statistics->Current_Date('Y-m-d', $time)}'");
-			
+
 			// If we have a result, return it, otherwise force a 0 to be returned instead of the logical FALSE that would otherwise be the case.
 			if( $result) {
 				return $result->visit;
@@ -300,11 +300,15 @@
 	}
 	
 	// This function returns all unique user agents in the database.
-	function wp_statistics_ua_list() {
+	function wp_statistics_ua_list( $rangestartdate = null, $rangeenddate = null ) {
 	
 		global $wpdb;
 		
-		$result = $wpdb->get_results("SELECT DISTINCT agent FROM {$wpdb->prefix}statistics_visitor", ARRAY_N);
+		if( $rangestartdate != null && $rangeenddate != null ) {
+			$result = $wpdb->get_results( $wpdb->prepare( "SELECT DISTINCT agent FROM {$wpdb->prefix}statistics_visitor AND `last_counter` BETWEEN %s AND %s", $rangestartdate, $rangeenddate ), ARRAY_N);
+		} else {
+			$result = $wpdb->get_results( "SELECT DISTINCT agent FROM {$wpdb->prefix}statistics_visitor", ARRAY_N);
+		}
 
 		$Browers = array();
 		
@@ -317,21 +321,29 @@
 	}
 	
 	// This function returns the count of a given user agent in the database.
-	function wp_statistics_useragent($agent) {
+	function wp_statistics_useragent( $agent, $rangestartdate = null, $rangeenddate = null ) {
 	
 		global $wpdb;
 		
-		$result = $wpdb->get_var("SELECT COUNT(agent) FROM {$wpdb->prefix}statistics_visitor WHERE `agent` = '$agent'");
+		if( $rangestartdate != null && $rangeenddate != null ) {
+			$result = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(agent) FROM {$wpdb->prefix}statistics_visitor WHERE `agent` = %s AND `last_counter` BETWEEN %s AND %s", $agent, $rangestartdate, $rangeenddate ) );
+		} else {
+			$result = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(agent) FROM {$wpdb->prefix}statistics_visitor WHERE `agent` = %s", $agent ) );
+		}
 		
 		return $result;
 	}
 
 	// This function returns all unique platform types from the database.
-	function wp_statistics_platform_list() {
+	function wp_statistics_platform_list( $rangestartdate = null, $rangeenddate = null ) {
 	
 		global $wpdb;
 		
-		$result = $wpdb->get_results("SELECT DISTINCT platform FROM {$wpdb->prefix}statistics_visitor", ARRAY_N);
+		if( $rangestartdate != null && $rangeenddate != null ) {
+			$result = $wpdb->get_results( $wpdb->prepare( "SELECT DISTINCT platform FROM {$wpdb->prefix}statistics_visitor WHERE `last_counter` BETWEEN %s AND %s", $rangestartdate, $rangeenddate ), ARRAY_N);
+		} else {
+			$result = $wpdb->get_results("SELECT DISTINCT platform FROM {$wpdb->prefix}statistics_visitor", ARRAY_N);
+		}
 		
 		$Platforms = array();
 		
@@ -344,21 +356,29 @@
 	}
 
 	// This function returns the count of a given platform in the database.
-	function wp_statistics_platform($platform) {
+	function wp_statistics_platform( $platform, $rangestartdate = null, $rangeenddate = null ) {
 	
 		global $wpdb;
 		
-		$result = $wpdb->get_var("SELECT COUNT(platform) FROM {$wpdb->prefix}statistics_visitor WHERE `platform` = '$platform'");
+		if( $rangestartdate != null && $rangeenddate != null ) {
+			$result = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(platform) FROM {$wpdb->prefix}statistics_visitor WHERE `platform` = %s AND `last_counter` BETWEEN %s AND %s", $platform, $rangestartdate, $rangeenddate ) );
+		} else {
+			$result = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(platform) FROM {$wpdb->prefix}statistics_visitor WHERE `platform` = %s", $platform ) );
+		}
 		
 		return $result;
 	}
 	
 	// This function returns all unique versions for a given agent from the database.
-	function wp_statistics_agent_version_list($agent) {
+	function wp_statistics_agent_version_list( $agent, $rangestartdate = null, $rangeenddate = null ) {
 	
 		global $wpdb;
 		
-		$result = $wpdb->get_results("SELECT DISTINCT version FROM {$wpdb->prefix}statistics_visitor WHERE agent = '$agent'", ARRAY_N);
+		if( $rangestartdate != null && $rangeenddate != null ) {
+			$result = $wpdb->get_results( $wpdb->prepare( "SELECT DISTINCT version FROM {$wpdb->prefix}statistics_visitor WHERE agent = %s AND `last_counter` BETWEEN %s AND %s", $agent, $rangestartdate, $rangeenddate ), ARRAY_N );
+		} else {
+			$result = $wpdb->get_results( $wpdb->prepare( "SELECT DISTINCT version FROM {$wpdb->prefix}statistics_visitor WHERE agent = %s", $agent ), ARRAY_N );
+		}
 				
 		$Versions = array();
 				
@@ -371,11 +391,15 @@
 	}
 
 	// This function returns the statistcs for a given agent/version pair from the database.
-	function wp_statistics_agent_version($agent, $version) {
+	function wp_statistics_agent_version($agent, $version, $rangestartdate = null, $rangeenddate = null ) {
 	
 		global $wpdb;
 		
-		$result = $wpdb->get_var("SELECT COUNT(version) FROM {$wpdb->prefix}statistics_visitor WHERE agent = '$agent' AND version = '$version'");
+		if( $rangestartdate != null && $rangeenddate != null ) {
+			$result = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(version) FROM {$wpdb->prefix}statistics_visitor WHERE agent = %s AND version = %s AND `last_counter` BETWEEN %s AND %s", $agent, $version, $rangestartdate, $rangeenddate ) );
+		} else {
+			$result = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(version) FROM {$wpdb->prefix}statistics_visitor WHERE agent = %s AND version = %s", $agent, $version ) );
+		}
 		
 		return $result;
 	}
@@ -719,7 +743,7 @@
 	
 		global $wpdb;
 		
-		$countcomms = $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->comments WHERE comment_approved = '1'");
+		$countcomms = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->comments} WHERE comment_approved = '1'");
 		
 		return $countcomms;
 	}
@@ -742,7 +766,7 @@
 	
 		global $wpdb, $WP_Statistics;
 		
-		$db_date = $wpdb->get_var("SELECT post_date FROM $wpdb->posts WHERE post_type='post' AND post_status='publish' ORDER BY ID DESC LIMIT 1");
+		$db_date = $wpdb->get_var("SELECT post_date FROM {$wpdb->posts} WHERE post_type='post' AND post_status='publish' ORDER BY post_date DESC LIMIT 1");
 		
 		$date_format = get_option('date_format');
 		
@@ -755,8 +779,8 @@
 	
 		global $wpdb;
 		
-		$get_first_post = $wpdb->get_var("SELECT post_date FROM $wpdb->posts WHERE post_status = 'publish' ORDER BY post_date LIMIT 1");
-		$get_total_post = $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->posts WHERE post_status = 'publish' AND post_type = 'post'");
+		$get_first_post = $wpdb->get_var("SELECT post_date FROM {$wpdb->posts} WHERE post_status = 'publish' ORDER BY post_date LIMIT 1");
+		$get_total_post = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->posts} WHERE post_status = 'publish' AND post_type = 'post'");
 		
 		$days_spend = intval((time() - strtotime($get_first_post) ) / 86400); // 86400 = 60 * 60 * 24 = number of seconds in a day
 		
@@ -776,8 +800,8 @@
 	
 		global $wpdb;
 		
-		$get_first_comment = $wpdb->get_var("SELECT comment_date FROM $wpdb->comments ORDER BY comment_date LIMIT 1");
-		$get_total_comment = $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->comments WHERE comment_approved = '1'");
+		$get_first_comment = $wpdb->get_var("SELECT comment_date FROM {$wpdb->comments} ORDER BY comment_date LIMIT 1");
+		$get_total_comment = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->comments} WHERE comment_approved = '1'");
 
 		$days_spend = intval((time() - strtotime($get_first_comment) ) / 86400); // 86400 = 60 * 60 * 24 = number of seconds in a day
 		
@@ -797,8 +821,8 @@
 	
 		global $wpdb;
 		
-		$get_first_user = $wpdb->get_var("SELECT user_registered FROM $wpdb->users ORDER BY user_registered LIMIT 1");
-		$get_total_user = $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->users");
+		$get_first_user = $wpdb->get_var("SELECT user_registered FROM {$wpdb->users} ORDER BY user_registered LIMIT 1");
+		$get_total_user = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->users}");
 
 		$days_spend = intval((time() - strtotime($get_first_user) ) / 86400); // 86400 = 60 * 60 * 24 = number of seconds in a day
 		
@@ -885,15 +909,17 @@
 	}
 	
 	// This function handle's the dashicons in the overview page.
-	function wp_statistics_icons($dashicons, $icon_name) {
+	function wp_statistics_icons($dashicons, $icon_name = null) {
 		
 		global $wp_version;
 		
+		if( null == $icon_name ) { $icon_name = $dashicons; }
+		
 		// Since versions of WordPress before 3.8 didn't have dashicons, don't use them in those versions.
 		if( version_compare( $wp_version, '3.8-RC', '>=' ) || version_compare( $wp_version, '3.8', '>=' ) ) {
-			return "<div class='dashicons {$dashicons}'></div>";
+			return '<span class="dashicons ' . $dashicons . '"></span>';
 		} else {
-			return "<img src='".plugins_url('wp-statistics/assets/images/')."{$icon_name}.png'/>";
+			return '<img src="' . plugins_url('wp-statistics/assets/images/') . $icon_name . '.png"/>';
 		}
 	}
 	
@@ -920,6 +946,7 @@
 		return $enabled;
 	}
 	
+	// This function creates the date range selector 'widget' used in the various statistics pages.
 	function wp_statistics_date_range_selector( $page, $current, $range = array(), $desc = array(), $extrafields = '' ) {
 		GLOBAL $WP_Statistics;
 		
@@ -938,13 +965,26 @@
 		
 		$rcount = count( $range );
 		
-		$rangestart = $WP_Statistics->Current_Date('m/d/Y', '-' . $current);
-		$rangeend = $WP_Statistics->Current_Date('m/d/Y');
-		
 		$bold = true;
-		if( array_key_exists( 'rangestart', $_GET ) ) { $rangestart = $_GET['rangestart']; } 
-		if( array_key_exists( 'rangeend', $_GET ) ) { $rangeend = $_GET['rangeend']; }
 
+		// Check to see if there's a range in the URL, if so set it, otherwise use the default.
+		if( array_key_exists( 'rangestart', $_GET ) ) { $rangestart = $_GET['rangestart']; } else { $rangestart = $WP_Statistics->Current_Date('m/d/Y', '-' . $current); } 
+		if( array_key_exists( 'rangeend', $_GET ) ) { $rangeend = $_GET['rangeend']; } else { $rangeend = $WP_Statistics->Current_Date('m/d/Y'); }
+
+		// Now get the number of days in the range.
+		$rangestart_utime = $WP_Statistics->strtotimetz( $rangestart );
+		$rangeend_utime = $WP_Statistics->strtotimetz( $rangeend );
+		$daysToDisplay = (int)( ( $rangeend_utime - $rangestart_utime ) / 24 / 60 / 60 );
+		
+		// If the rangeend isn't today AND not one of the standard range values, then it's a custom selected value and we need to flag it as such.
+		if( $rangeend != $WP_Statistics->Current_Date('m/d/Y') && ! in_array( $current, $range ) ) {
+			$current = -1;
+		} else {
+			// If on the other hand we are a standard range, let's reset the custom range selector to match it.
+			$rangestart = $WP_Statistics->Current_Date('m/d/Y', '-' . $current);
+			$rangeend = $WP_Statistics->Current_Date('m/d/Y');
+		}
+		
 		echo '<form method="get"><ul class="subsubsub">' . "\r\n";
 		
 		for( $i = 0; $i < $rcount; $i ++ ) {
@@ -976,9 +1016,8 @@
 		}
 		else {
 			echo ' ' . __('Range', 'wp_statistics' ) . ': ';
-			$rangeend = $WP_Statistics->Current_Date('m/d/Y');
-			$rangestart = $WP_Statistics->Current_Date('m/d/Y','-'.$current);
 		}
+		
 		echo '<input type="text" size="10" name="rangestart" id="datestartpicker" value="' . $rangestart. '" placeholder="' . __('MM/DD/YYYY', 'wp_statistics') .'"> '.__('to', 'wp_statistics').' <input type="text" size="10" name="rangeend" id="dateendpicker" value="' . $rangeend . '" placeholder="' . __('MM/DD/YYYY', 'wp_statistics') .'"> <input type="submit" value="'.__('Go', 'wp_statistics').'" class="button-primary">' . "\r\n";
 		
 		echo '</ul><form>' . "\r\n";
@@ -986,6 +1025,7 @@
 		echo '<script>jQuery(function() { jQuery( "#datestartpicker" ).datepicker(); jQuery( "#dateendpicker" ).datepicker(); });</script>' . "\r\n";
 	}
 	
+	// This function is used to calculate the number of days and thier respective unix timestamps.
 	function wp_statistics_date_range_calculator( $days, $start, $end ) {
 		GLOBAL $WP_Statistics;
 		
@@ -1012,6 +1052,7 @@
 		return array( $daysToDisplay, $rangestart_utime, $rangeend_utime );
 	}
 	
+	// This function will empty a table based on the table name.
 	function wp_statitiscs_empty_table( $table_name = FALSE ) {
 		global $wpdb;
 		
@@ -1025,3 +1066,19 @@
 
 		return sprintf(__('Error, %s not emptied!', 'wp_statistics'), $table_name ); 
 	}	
+
+	// This function creates a small JavaScript snipit that will load the contents of a overview or dashboard widget.
+	function wp_statistics_generate_widget_load_javascript( $widget, $container_id = null ) {
+		if( null == $container_id ) {
+			$container_id = str_replace( '.', '_', $widget . '_postbox' );
+		}
+?>
+<script type="text/javascript">
+	jQuery(document).ready(function() {
+		wp_statistics_get_widget_contents( '<?php echo $widget; ?>', '<?php echo $container_id; ?>' );
+	});
+</script>
+<?php
+	}
+	
+	

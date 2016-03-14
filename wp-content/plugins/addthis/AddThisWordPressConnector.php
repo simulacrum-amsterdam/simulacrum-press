@@ -53,6 +53,8 @@ if (!class_exists('AddThisWordPressConnector')) {
             'addthis_plugin_controls',
             'addthis_profile',
             'api_key',
+            'addthis_rate_us',
+            'addthis_rate_us_timestamp',
             'credential_validation_status',
             'debug_profile_level',
             'debug_profile_type',
