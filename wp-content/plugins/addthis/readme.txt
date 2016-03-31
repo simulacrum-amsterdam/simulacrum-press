@@ -2,8 +2,8 @@
 Contributors: abramsm, srijith.v, vipinss, dnrahamim, jgrodel, bradaddthiscom, mkitzman, addthis_paul, addthis_matt, addthis_elsa, ribin_addthis, AddThis_Mike
 Tags: bookmarking, email sharing, facebook, linkedin, pinterest, share, sharing buttons, social marketing, social tools, twitter, whatsapp
 Requires at least: 3.0
-Tested up to: 4.3
-Stable tag: 5.2.3
+Tested up to: 4.4.2
+Stable tag: 5.3.1
 
 Share buttons from AddThis help you get more traffic from sharing through social networks.
 
@@ -75,6 +75,16 @@ In the screen options you can enable the AddThis meta box. Check the box and sav
 7. Customization options on the AddThis Dashboard
 
 == Changelog ==
+
+= 5.3.1 =
+* Disabling the mobile version of the Sharing Sidebar when the Mobile Sharing Toolbar is enabled
+
+= 5.3.0 =
+* Adding Mobile Sharing Toolbar to WordPress mode (already available to users in AddThis mode). It will automatically be turned on for pages where you've enabled the Sharing Sidebar. You can change this in the settings.
+* Fixing notice: Undefined variable: inputHtml in addthis-toolbox.php on line 142
+* Increasing the number of services that can be added to the sharing sidebar from 6 to 10
+* Adding missing licenses and attributions
+* SS fixes for Twenty Sixteen theme
 
 = 5.2.3 =
 * Adding missing licenses and attributions
@@ -405,6 +415,12 @@ Fixed nondeterministic bug with the_title(), causing the title to occasionally a
 
 
 == Upgrade Notice ==
+
+= 5.3.1 =
+Disabling the mobile version of the Sharing Sidebar when the Mobile Sharing Toolbar is enabled
+
+= 5.3.0 =
+New tool for WordPress mode! The Mobile Sharing Sidebar. It will automatically be turned on for pages where you've enabled the Sharing Sidebar. You can change this in the settings. Fixied notice "Undefined variable: inputHtml in addthis-toolbox.php on line 142". Increases the number of services that can be added to the sharing sidebar from 6 to 10. Adding missing licenses and attributions. CSS fixes for Twenty Sixteen theme.
 
 = 5.2.3 =
 Adding missing licenses and attributions

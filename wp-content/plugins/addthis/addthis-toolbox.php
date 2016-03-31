@@ -1,7 +1,7 @@
 <?php
 /**
  * +--------------------------------------------------------------------------+
- * | Copyright (c) 2008-2015 AddThis, LLC                                     |
+ * | Copyright (c) 2008-2016 AddThis, LLC                                     |
  * +--------------------------------------------------------------------------+
  * | This program is free software; you can redistribute it and/or modify     |
  * | it under the terms of the GNU General Public License as published by     |
@@ -139,7 +139,7 @@ class Addthis_ToolBox
                 }
 
                 if ($recommendedContent
-                    && strpos($inputHtml, 'AddThis Recommended Content below') === false
+                    && strpos($content, 'AddThis Recommended Content below') === false
                 ) {
                   $content .= '<!-- AddThis Recommended Content below --> ' ;
                   $content .= self::_buildDiv(self::AT_CONTENT_BELOW_POST, false);

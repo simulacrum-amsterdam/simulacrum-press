@@ -1,7 +1,7 @@
 <?php
 /**
  * +--------------------------------------------------------------------------+
- * | Copyright (c) 2008-2015 AddThis, LLC                                     |
+ * | Copyright (c) 2008-2016 AddThis, LLC                                     |
  * +--------------------------------------------------------------------------+
  * | This program is free software; you can redistribute it and/or modify     |
  * | it under the terms of the GNU General Public License as published by     |
@@ -25,7 +25,7 @@ if (!class_exists('AddThisWordPressSharingButtonsPlugin')) {
     Class AddThisWordPressSharingButtonsPlugin {
         // implements AddThisWordPressPluginInterface {
 
-        static $version = '5.2.3';
+        static $version = '5.3.1';
         static $settingsPageId = 'addthis_social_widget';
         static $name = "Share Buttons by AddThis";
         static $productPrefix = 'wpp';

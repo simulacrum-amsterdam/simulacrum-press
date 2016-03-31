@@ -1,6 +1,6 @@
 /**
  * +--------------------------------------------------------------------------+
- * | Copyright (c) 2008-2015 AddThis, LLC                                     |
+ * | Copyright (c) 2008-2016 AddThis, LLC                                     |
  * +--------------------------------------------------------------------------+
  * | This program is free software; you can redistribute it and/or modify     |
  * | it under the terms of the GNU General Public License as published by     |
@@ -25,6 +25,7 @@ jQuery(document).ready(function(jQuery) {
     jQuery( "#Card-above-post" ).tabs();
     jQuery( "#Card-below-post" ).tabs();
     jQuery( "#Card-side-sharing" ).tabs();
+    jQuery( "#Card-mobile-toolbar" ).tabs();
 
     var thickDims, tbWidth, tbHeight, img = '';
 

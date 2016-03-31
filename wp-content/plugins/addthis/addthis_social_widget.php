@@ -3,13 +3,13 @@
  * Plugin Name: Share Buttons by AddThis
  * Plugin URI: http://www.addthis.com
  * Description: Use the AddThis suite of website tools which includes sharing, following, recommended content, and conversion tools to help you make your website smarter. With AddThis, you can see how your users are engaging with your content, provide a personalized experience for each user and encourage them to share, subscribe or follow.
- * Version: 5.2.3
+ * Version: 5.3.1
  * Author: The AddThis Team
  * Author URI: http://www.addthis.com/
  * License: GPL2
  *
  * +--------------------------------------------------------------------------+
- * | Copyright (c) 2008-2015 AddThis, LLC                                     |
+ * | Copyright (c) 2008-2016 AddThis, LLC                                     |
  * +--------------------------------------------------------------------------+
  * | This program is free software; you can redistribute it and/or modify     |
  * | it under the terms of the GNU General Public License as published by     |
@@ -637,6 +637,7 @@ if ($addthis_options['addthis_plugin_controls'] == "AddThis") {
                   && empty($options['addthis_above_enabled'])
                   && empty($options['addthis_below_enabled'])
                   && empty($options['addthis_sidebar_enabled'])
+                  && empty($options['addthis_mobile_toolbar_enabled'])
                   && !get_user_meta($user_id, 'addthis_ignore_notices')
         ) {
             // WordPress mode but no tools enabled
@@ -876,6 +877,8 @@ if ($addthis_options['addthis_plugin_controls'] == "AddThis") {
             'addthis_beforecomments',
             'addthis_below_enabled',
             'addthis_sidebar_enabled',
+            'addthis_mobile_toolbar_enabled',
+            'addthis_mobile_toolbar_counts',
             'below_auto_services',
         );
 
@@ -913,6 +916,8 @@ if ($addthis_options['addthis_plugin_controls'] == "AddThis") {
             'addthis_sidebar_count',
             'addthis_sidebar_position',
             'addthis_sidebar_theme',
+            'addthis_mobile_toolbar_numPreferredServices',
+            'addthis_mobile_toolbar_position',
         );
 
         foreach ($checkAndSanitize as $field) {
@@ -1805,7 +1810,7 @@ EOF;
                                         </label>
                                         <select id="addthis_sidebar_count" name="addthis_settings[addthis_sidebar_count]">
                                             <?php
-                                                for($i=1;$i<7;$i++){
+                                                for($i=1;$i<11;$i++){
                                                     echo '<option value="'.$i.'"'.($options['addthis_sidebar_count'] == $i? " selected='selected'":"").'>'.$i.'</option>';
                                                 }
                                             ?>
@@ -1835,6 +1840,100 @@ EOF;
                         </div>
                     </div>
                 </div>
+
+
+                <div class="Card" id="Card-mobile-toolbar">
+                    <div class="Card-hd">
+                        <div class="at-tool-toggle">
+                            <input
+                                type="checkbox"
+                                value="true"
+                                name="addthis_settings[addthis_mobile_toolbar_enabled]"
+                                class="addthis-toggle-cb" id="addthis_mobile_toolbar_enabled"
+                                style="display:none;" <?php echo ( $options['addthis_mobile_toolbar_enabled'] != false ? 'checked="checked"' : ''); ?>/>
+                            <div
+                                id="addthis_mobile_toolbar_enabled_switch"
+                                class="addthis-switch <?php echo ( $options['addthis_mobile_toolbar_enabled']  != false ? 'addthis-switchOn' : ''); ?>">
+                            </div>
+                        </div>
+                        <h3 class="Card-hd-title">Mobile Sharing Toolbar</h3>
+                        <ul class="Tabbed-nav">
+                            <li class="Tabbed-nav-item"><a href="#mobile-toolbar-1">Style</a></li>
+                            <li class="Tabbed-nav-item"><a href="#mobile-toolbar-2">Options</a></li>
+                        </ul>
+                    </div>
+                    <div class="addthis_mobile_toolbar_enabled_overlay">
+                        <div class="Card-bd">
+                            <div id="mobile-toolbar-1">
+                                <p>This sharing toolbar is made for mobile responsiveness and floats above your site, truncating or expanding for optimal mobile user experience.</p>
+                                <img src="<?php echo $cmsConnector->getPluginImageFolderUrl() . 'mobile_toolbar_counts.png'; ?>" />
+                                <ul>
+                                    <li>
+                                        <strong>Position</strong>
+                                        <label for="addthis_mobile_toolbar_position_bottom" class="addthis-mobile_toolbar-position-label">
+                                            <input
+                                                type="radio"
+                                                id="addthis_mobile_toolbar_position_bottom"
+                                                name="addthis_settings[addthis_mobile_toolbar_position]"
+                                                value="bottom" <?php echo ( $options['addthis_mobile_toolbar_position'] != 'top' ? 'checked="checked"' : ''); ?>/>
+                                            <span class="addthis-checkbox-label">Bottom</span>
+                                        </label>
+                                        <label for="addthis_mobile_toolbar_position_top" class="addthis-mobile_toolbar-position-label">
+                                            <input
+                                                type="radio"
+                                                id="addthis_mobile_toolbar_position_top"
+                                                name="addthis_settings[addthis_mobile_toolbar_position]"
+                                                value="top" <?php echo ( $options['addthis_mobile_toolbar_position']  == 'top' ? 'checked="checked"' : ''); ?>/>
+                                            <span class="addthis-checkbox-label">Top</span>
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div id="mobile-toolbar-2">
+                                <?php _addthis_print_template_checkboxes('mobile_toolbar') ?>
+                                <ul>
+                                    <li>
+                                        <label for="addthis_mobile_toolbar_numPreferredServices">
+                                            <strong>Buttons</strong>
+                                            <span class="at-wp-tooltip" tooltip="The number of social sharing buttons to show in the mobile sharing toolbar.">?</span>
+                                        </label>
+                                        <select id="addthis_mobile_toolbar_numPreferredServices" name="addthis_settings[addthis_mobile_toolbar_numPreferredServices]">
+                                            <?php
+                                                for($i=1;$i<11;$i++){
+                                                    echo '<option value="'.$i.'"'.($options['addthis_mobile_toolbar_numPreferredServices'] == $i? " selected='selected'":"").'>'.$i.'</option>';
+                                                }
+                                            ?>
+                                        </select>
+                                    </li>
+                                    <li>
+                                        <label for="addthis_mobile_toolbar_counts">
+                                            <strong>Show Share Counts</strong>
+                                            <span class="at-wp-tooltip" tooltip="Would you like us to show the number of shares a page has in the mobile sharing toolbar?">?</span>
+                                        </label>
+                                        <label for="addthis_mobile_toolbar_counts_on" class="addthis-mobile-toolbar-counts-label">
+                                            <input
+                                                type="radio"
+                                                id="addthis_mobile_toolbar_counts_on"
+                                                name="addthis_settings[addthis_mobile_toolbar_counts]"
+                                                value="1" <?php echo ( $options['addthis_mobile_toolbar_counts'] ? 'checked="checked"' : ''); ?>/>
+                                            <span class="addthis-checkbox-label">Yes</span>
+                                        </label>
+                                        <label for="addthis_mobile_toolbar_counts_off" class="addthis-mobile-toolbar-counts-label">
+                                            <input
+                                                type="radio"
+                                                id="addthis_mobile_toolbar_position_off"
+                                                name="addthis_settings[addthis_mobile_toolbar_counts]"
+                                                value="0" <?php echo ( !$options['addthis_mobile_toolbar_counts'] ? 'checked="checked"' : ''); ?>/>
+                                            <span class="addthis-checkbox-label">No</span>
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
                 <?php echo _addthis_rate_us_card(); ?>
             </div>
             <div id="tabs-2">
@@ -2127,6 +2226,19 @@ function _addthis_mode_card() {
                 </tr>
                 <tr>
                     <th role="rowheader" scope="row">Sharing sidebar</td>
+                     <td>
+                        <span class="at-icon-check">
+                            <span class="at-icon-fallback-text">Has this Feature</span>
+                        </span>
+                    </td>
+                     <td>
+                        <span class="at-icon-check">
+                            <span class="at-icon-fallback-text">Has this Feature</span>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <th role="rowheader" scope="row">Mobile sharing toolbar</td>
                      <td>
                         <span class="at-icon-check">
                             <span class="at-icon-fallback-text">Has this Feature</span>

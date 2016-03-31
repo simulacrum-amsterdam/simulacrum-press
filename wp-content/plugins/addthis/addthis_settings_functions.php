@@ -1,7 +1,7 @@
 <?php
 /**
  * +--------------------------------------------------------------------------+
- * | Copyright (c) 2008-2015 AddThis, LLC                                     |
+ * | Copyright (c) 2008-2016 AddThis, LLC                                     |
  * +--------------------------------------------------------------------------+
  * | This program is free software; you can redistribute it and/or modify     |
  * | it under the terms of the GNU General Public License as published by     |
@@ -267,7 +267,7 @@ function _addthis_swap_first_two_elements (&$array, $key)
 /**
  * Prints the header and list of checkboxes of templates on which AddThis
  * buttons can be seen.
- * @param string $type 'above', 'below', 'sidebar'
+ * @param string $type 'above', 'below', 'sidebar', 'mobile_toolbar'
  * @return bool true on success, false on failure
  */
 function _addthis_print_template_checkboxes($type) {

@@ -1,7 +1,7 @@
 <?php
 /**
  * +--------------------------------------------------------------------------+
- * | Copyright (c) 2008-2015 AddThis, LLC                                     |
+ * | Copyright (c) 2008-2016 AddThis, LLC                                     |
  * +--------------------------------------------------------------------------+
  * | This program is free software; you can redistribute it and/or modify     |
  * | it under the terms of the GNU General Public License as published by     |
@@ -56,6 +56,10 @@ if (!class_exists('AddThisConfigs')) {
             'addthis_sidebar_count'        => '5',
             'addthis_sidebar_enabled'      => false,
             'addthis_sidebar_position'     => 'left',
+            'addthis_mobile_toolbar_enabled'  => false,
+            'addthis_mobile_toolbar_numPreferredServices' => '4',
+            'addthis_mobile_toolbar_position' => 'bottom',
+            'addthis_mobile_toolbar_counts' => true,
             'addthis_twitter_template'     => '',
             'atversion'                    => 300,
             'atversion_update_status'      => 0,
@@ -232,7 +236,9 @@ if (!class_exists('AddThisConfigs')) {
                         continue;
                     }
 
-                    if ($location == 'sidebar' && $template['fieldName'] == 'excerpts') {
+                    if (($location == 'sidebar' || $location == 'mobile_toolbar')
+                        && $template['fieldName'] == 'excerpts'
+                    ) {
                         continue;
                     }
 
@@ -408,19 +414,42 @@ if (!class_exists('AddThisConfigs')) {
             if (!empty($this->configs['addthis_sidebar_enabled'])) {
                 $templateType = _addthis_determine_template_type();
 
-                $display = false;
+                $displaySidebar = false;
                 if (is_string($templateType)) {
                     $fieldList = $this->getFieldsForContentTypeSharingLocations($templateType, 'sidebar');
                     $fieldName = $fieldList[0]['fieldName'];
                     if (!empty($this->configs[$fieldName])) {
-                        $display = true;
+                        $displaySidebar = true;
                     }
                 }
 
-                if ($display) {
+                if ($displaySidebar) {
                     $addThisLayersVariable['share']['theme'] = strtolower($this->configs['addthis_sidebar_theme']);
                     $addThisLayersVariable['share']['position'] = strtolower($this->configs['addthis_sidebar_position']);
                     $addThisLayersVariable['share']['numPreferredServices'] = (int)$this->configs['addthis_sidebar_count'];
+                }
+            }
+
+            if (!empty($this->configs['addthis_mobile_toolbar_enabled'])) {
+                $templateType = _addthis_determine_template_type();
+
+                $displayToolbar = false;
+                if (is_string($templateType)) {
+                    $fieldList = $this->getFieldsForContentTypeSharingLocations($templateType, 'mobile_toolbar');
+                    $fieldName = $fieldList[0]['fieldName'];
+                    if (!empty($this->configs[$fieldName])) {
+                        $displayToolbar = true;
+                    }
+                }
+
+                if ($displayToolbar) {
+                    $addThisLayersVariable['sharedock']['counts'] = (boolean)$this->configs['addthis_mobile_toolbar_counts'];
+                    $addThisLayersVariable['sharedock']['position'] = strtolower($this->configs['addthis_mobile_toolbar_position']);
+                    $addThisLayersVariable['sharedock']['numPreferredServices'] = (int)$this->configs['addthis_mobile_toolbar_numPreferredServices'];
+
+                    if ($displaySidebar) {
+                        $addThisLayersVariable['share']['mobile'] = false;
+                    }
                 }
             }
 
@@ -504,6 +533,10 @@ if (!class_exists('AddThisConfigs')) {
 
             if (isset($this->configs['addthis_sidebar_enabled'])) {
                 $pluginInfo['select_prefs']['addthis_sidebar_enabled'] = $this->configs['addthis_sidebar_enabled'];
+            }
+
+            if (isset($this->configs['addthis_mobile_toolbar_enabled'])) {
+                $pluginInfo['select_prefs']['addthis_mobile_toolbar_enabled'] = $this->configs['addthis_mobile_toolbar_enabled'];
             }
 
             if (is_array($this->configs)) {
