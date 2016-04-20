@@ -27,24 +27,6 @@ var deployGlobs = [
   '**'
 ];
 
-gulp.task('deploy-staging-all', function () {
-  var SSHConfig = {
-    host: '95.85.1.182',
-    port: 22,
-    username: 'root',
-    password: sshPass.sshPassword
-  }
-
-  var gulpSSH = new GulpSSH({
-    ignoreErrors: false,
-    sshConfig: SSHConfig
-  })
-  console.log(SSHConfig.password);
-  return gulp
-    .src(deployGlobs)
-    .pipe(gulpSSH.dest('/var/www/html/'))
-})
-
 // Deployment over ftp -> production
 
 gulp.task( 'deploy-production-all', function () {
