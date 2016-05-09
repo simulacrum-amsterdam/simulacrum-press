@@ -109,7 +109,7 @@ Class AddThis_addjs_sharing_button_plugin{
     }
 
     function output_script_filter($content){
-        if ($this->_js_added != true && ! is_admin() && ! is_feed() )
+        if (!$this->_js_added && !is_admin() && !is_feed() && in_the_loop())
         {
             $this->wrapJs();
             $this->addWidgetToJs();

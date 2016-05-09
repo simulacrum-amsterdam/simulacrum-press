@@ -6,7 +6,7 @@
 Plugin Name: Avatar Manager
 Plugin URI: https://wordpress.org/plugins/avatar-manager/
 Description: Avatar Manager for WordPress is a sweet and simple plugin for storing avatars locally and more. Easily.
-Version: 1.6.0
+Version: 1.6.1
 Author: Cătălin Dogaru
 Author URI: https://profiles.wordpress.org/cdog/
 License: GPLv2 or later
@@ -15,7 +15,7 @@ Domain Path: /languages
 */
 
 /*
-Copyright © 2013-2015 Cătălin Dogaru
+Copyright © 2013-2016 Cătălin Dogaru
 
 This program is free software; you can redistribute it and/or modify it under
 the terms of the GNU General Public License as published by the Free Software
@@ -31,7 +31,7 @@ this program; if not, write to the Free Software Foundation, Inc., 51 Franklin
 Street, Fifth Floor, Boston, MA 02110-1301, USA.
 */
 
-define( 'AVATAR_MANAGER_VERSION', '1.6.0' );
+define( 'AVATAR_MANAGER_VERSION', '1.6.1' );
 define( 'AVATAR_MANAGER_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'AVATAR_MANAGER_AVATAR_UPLOADS', 0 );
 define( 'AVATAR_MANAGER_DEFAULT_SIZE', 96 );
@@ -428,13 +428,13 @@ function avatar_manager_admin_enqueue_scripts() {
 	$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
 	// Registers plugin CSS style file.
-	wp_register_style( 'avatar-manager', AVATAR_MANAGER_PLUGIN_URL . 'avatar-manager' . $suffix . '.css', array(), '1.2.0' );
+	wp_register_style( 'avatar-manager', AVATAR_MANAGER_PLUGIN_URL . 'assets/css/avatar-manager' . $suffix . '.css', array(), '1.2.1' );
 
 	// Enqueues plugin CSS style file.
 	wp_enqueue_style( 'avatar-manager' );
 
 	// Registers plugin JS script file.
-	wp_register_script( 'avatar-manager', AVATAR_MANAGER_PLUGIN_URL . 'avatar-manager' . $suffix . '.js', array( 'jquery' ), '1.2.0' );
+	wp_register_script( 'avatar-manager', AVATAR_MANAGER_PLUGIN_URL . 'assets/js/avatar-manager' . $suffix . '.js', array( 'jquery' ), '1.2.1' );
 
 	// Enqueues plugin JS script file.
 	wp_enqueue_script( 'avatar-manager' );

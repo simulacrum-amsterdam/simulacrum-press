@@ -3,8 +3,8 @@ Contributors: cdog
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SMKJZHX7G3VQS
 Tags: avatars, gravatar, profile, users, xml-rpc
 Requires at least: 3.5
-Tested up to: 4.3
-Stable tag: 1.6.0
+Tested up to: 4.5
+Stable tag: 1.6.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,47 +12,41 @@ Avatar Manager for WordPress is a sweet and simple plugin for storing avatars lo
 
 == Description ==
 
-Avatar Manager for WordPress is a sweet and simple plugin for storing avatars
-locally and more. Easily.
+Avatar Manager for WordPress is a sweet and simple plugin for storing avatars locally and more. Easily.
 
-Enhance your WordPress website by letting your users choose between using
-Gravatar or a self-hosted avatar image right from their profile screen. Improved
-workflow, on-demand image generation and custom user permissions under a native
-interface. Say hello to the Avatar Manager plugin.
+Enhance your WordPress website by letting your users choose between using Gravatar or a self-hosted avatar image right from their profile screen. Improved workflow, on-demand image generation and custom user permissions under a native interface. Say hello to the Avatar Manager plugin.
+
+= Help Preserve this Project =
+
+Want to support this project for continued development and freely available for everyone? Here’s how you can help preserve Avatar Manager:
+
+* [**Get involved.**](https://github.com/resourcestream/avatar-manager#contributing) Contribute a patch or help resolving an existing issue or confirmed feature request, or submit a translation.
+* [**Suggest adding to core.**](https://core.trac.wordpress.org/ticket/16020) Whether you find Avatar Manager a good fit for WordPress core your feedback can help make a difference.
+* [**Add your own review.**](https://wordpress.org/support/view/plugin-reviews/avatar-manager#postform) Let others know how was your experience using Avatar Manager.
+* [**Make a donation.**](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SMKJZHX7G3VQS) Keep me motivated with a candy bar or a theater ticket. Is that simple.
+
+Avatar Manager is a user-driven project, and all developments and enhancements depend on users like _you_! Become a contributor or make a donation, and get your name featured in front of a [growing audience](https://wordpress.org/plugins/avatar-manager/stats/).
+
+_Thank you for choosing to contribute to Avatar Manager!_
+
+= Contributing =
+
+Have a bug or a feature request? Please [open a new issue](https://github.com/resourcestream/avatar-manager/issues). Before opening any issue, please search for existing issues and read the [Issue Guidelines](https://github.com/necolas/issue-guidelines), written by [Nicolas Gallagher](https://github.com/necolas/). Please submit all pull requests against development branches.
+
+* [Avatar Manager on GitHub](https://github.com/resourcestream/avatar-manager)
 
 = How It’s Made =
 
-Want to find out how Avatar Manager is built? Make sure to read the following
-resources.
-
-**Tuts+ Code**
-
-+ [How to Create a WordPress Avatar Management Plugin from Scratch](http://code.tutsplus.com/series/how-to-create-a-wordpress-avatar-management-plugin-from-scratch--wp-33866)
-
-= Get Involved =
-
-**Thank you for choosing to contribute to Avatar Manager!**
-
-Have a bug or a feature request? Please [open a new
-issue](https://github.com/resourcestream/avatar-manager/issues). Before opening
-any issue, please search for existing issues and read the [Issue
-Guidelines](https://github.com/necolas/issue-guidelines), written by [Nicolas
-Gallagher](https://github.com/necolas/). Please submit all pull requests against
-dev branches.
-
-Avatar Manager is a user-driven project, and all developments and enhancements
-depend on users like **you**!
-
-+ [Avatar Manager on GitHub](https://github.com/resourcestream/avatar-manager)
+Find out how Avatar Manager it’s made on [Tuts+ Code](http://code.tutsplus.com/series/how-to-create-a-wordpress-avatar-management-plugin-from-scratch--wp-33866).
 
 = Authors =
 
 **Cătălin Dogaru**
 
-+ http://twitter.com/resourcestream
-+ http://github.com/cdog
+* https://profiles.wordpress.org/cdog
+* https://github.com/cdog
 
-= Contributing Developers =
+= Contributors =
 
 Avatar Manager is brought to you by these fine folks.
 
@@ -62,69 +56,50 @@ Avatar Manager is brought to you by these fine folks.
 [Johan Steen](https://profiles.wordpress.org/artstorm),
 [Lucas Uzan](https://profiles.wordpress.org/wiiz83),
 [Mateus Neves](https://profiles.wordpress.org/mateusneves),
+[Maura Montero D.](https://profiles.wordpress.org/modima65),
 [Pieter Goosen](https://profiles.wordpress.org/pietergoosen),
 [Samantha Muthiah](https://profiles.wordpress.org/schm168),
 [Snowboard Mommy](https://profiles.wordpress.org/snowboardmommy)
 
 = Copyright and License =
 
-Copyright © 2013-2015 Cătălin Dogaru
+Copyright © 2013-2016 Cătălin Dogaru
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 
-This program is distributed in the hope that it will be useful, but WITHOUT ANY
-WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE. See the GNU General Public License for more details.
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 51 Franklin
-Street, Fifth Floor, Boston, MA 02110-1301, USA.
+You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
 == Installation ==
 
 Installation is simple as peas.
 
-1. Install Avatar Manager either via the WordPress.org plugin directory, or by
-   uploading the files to your server.
-2. After activating Avatar Manager, you will be able to customize the plugin
-   options under the [Settings Discussion
-   Screen](http://codex.wordpress.org/Settings_Discussion_Screen).
+1. Install Avatar Manager either via the WordPress.org plugin directory, or by uploading the files to your server.
+2. After activating Avatar Manager, you will be able to customize the plugin options under the [Settings Discussion Screen](http://codex.wordpress.org/Settings_Discussion_Screen).
 3. That’s it. You’re ready to go!
 
 == Frequently Asked Questions ==
 
 = Can I choose between my Gravatar and my custom avatar? =
 
-Yes, you can choose between your Gravatar and your custom avatar under the
-[Users Your Profile
-Screen](http://codex.wordpress.org/Users_Your_Profile_Screen).
+Yes, you can choose between your Gravatar and your custom avatar under the [Users Your Profile Screen](http://codex.wordpress.org/Users_Your_Profile_Screen).
 
 = Can I choose a rating for my custom avatar? =
 
-Yes, you can choose a rating for your custom avatar under the [Users Your
-Profile Screen](http://codex.wordpress.org/Users_Your_Profile_Screen).
+Yes, you can choose a rating for your custom avatar under the [Users Your Profile Screen](http://codex.wordpress.org/Users_Your_Profile_Screen).
 
 = Can low privileged users upload their own avatar? =
 
-Yes, you can enable this feature under the [Settings Discussion
-Screen](http://codex.wordpress.org/Settings_Discussion_Screen).
+Yes, you can enable this feature under the [Settings Discussion Screen](http://codex.wordpress.org/Settings_Discussion_Screen).
 
 = Can I add the self-hosted avatars to my template files? =
 
-Yes, you can add the self-hosted avatars to your template files by using the
-WordPress built-in
-[`get_avatar()`](http://codex.wordpress.org/Function_Reference/get_avatar)
-function to retrieve the avatar for a user who provided a user ID or email
-address.
+Yes, you can add the self-hosted avatars to your template files by using the WordPress built-in [`get_avatar()`](http://codex.wordpress.org/Function_Reference/get_avatar) function to retrieve the avatar for a user who provided a user ID or email address.
 
 = Can I create a default custom avatar? =
 
-Yes, you can easily add your own by adding a filter to the `avatar_defaults`
-hook. After uploading the new image to your theme files, add this to your
-theme’s `function.php` file:
+Yes, you can easily add your own by adding a filter to the `avatar_defaults` hook. After uploading the new image to your theme files, add this to your theme’s `function.php` file:
 
 `
 <?php
@@ -139,20 +114,22 @@ add_filter( 'avatar_defaults', 'custom_avatar_defaults' );
 ?>
 `
 
-Now, go to [Settings Discussion
-Screen](http://codex.wordpress.org/Settings_Discussion_Screen) and select your
-new avatar from the list.
+Now, go to [Settings Discussion Screen](http://codex.wordpress.org/Settings_Discussion_Screen) and select your new avatar from the list.
 
 == Screenshots ==
 
-1. Avatar Manager options under the [Settings Discussion
-   Screen](http://codex.wordpress.org/Settings_Discussion_Screen).
-2. Avatar Manager options under the [Users Your Profile
-   Screen](http://codex.wordpress.org/Users_Your_Profile_Screen).
-3. Avatar Manager options under the [Users Your Profile
-   Screen](http://codex.wordpress.org/Users_Your_Profile_Screen).
+1. Avatar Manager options under the [Settings Discussion Screen](http://codex.wordpress.org/Settings_Discussion_Screen).
+2. Avatar Manager options under the [Users Your Profile Screen](http://codex.wordpress.org/Users_Your_Profile_Screen).
+3. Avatar Manager options under the [Users Your Profile Screen](http://codex.wordpress.org/Users_Your_Profile_Screen).
 
 == Changelog ==
+
+= 1.6.1 =
+
++ Updated minified files.
++ Grunt tasks.
++ Mexican Spanish localization.
++ Minor bug fixes.
 
 = 1.6.0 =
 

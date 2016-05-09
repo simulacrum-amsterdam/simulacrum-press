@@ -1,15 +1,45 @@
 === Share Buttons by AddThis ===
 Contributors: abramsm, srijith.v, vipinss, dnrahamim, jgrodel, bradaddthiscom, mkitzman, addthis_paul, addthis_matt, addthis_elsa, ribin_addthis, AddThis_Mike
-Tags: bookmarking, email sharing, facebook, linkedin, pinterest, share, sharing buttons, social marketing, social tools, twitter, whatsapp
+Tags: AddThis, share buttons, sharing buttons, share buttons plugin, plugin, widget, social buttons, social tools, Facebook, Twitter, LinkedIn, Pinterest, bookmark, bookmarking, email sharing, sharing, share, mobile, mobile sharing, mobile sharing buttons, sidebar, sharing sidebar
 Requires at least: 3.0
-Tested up to: 4.4.2
-Stable tag: 5.3.1
+Tested up to: 4.5
+Stable tag: 5.3.2
 
-Share buttons from AddThis help you get more traffic from sharing through social networks.
+AddThis Share Buttons help you to increase traffic to your website by getting more of your content shared on social media.
+
+
 
 == Description ==
 
-The best share buttons on the web are now available for your WordPress site. Promote your content easily by sharing to over 200 of the most popular social networking and bookmarking sites (like Facebook Share, Facebook Like, Twitter, Pinterest, Google+, WhatsApp, LinkedIn and more). Clean, customizable and simple share buttons are unobtrusive, quick to load and recognized all over the web.
+Get more of your website’s content shared on social media by installing the AddThis Share Buttons plugin for WordPress. With AddThis, your users can easily share your content on some of the most popular social networks, including Facebook, Twitter, Pinterest, LinkedIn, and more. The more your content gets shared, the more traffic you’ll drive back to your site. You can also choose whether to display these share buttons on your homepage, category page, archive page, and other specific WordPress pages and posts.
+
+With the AddThis Share Buttons WordPress plugin, you get:
+
+= Share Buttons =
+
+* Position buttons above or below your content
+* Choose between several button styles and sizes
+* Include share counts to encourage your visitors to share
+* Personalize which sharing services appear or pick them yourself
+
+= Sharing Sidebar =
+
+* Choose which side of your page it appears on
+* Control how many buttons show up in the sidebar
+
+= Mobile Sharing Toolbar =
+
+* Position the toolbar at the top or bottom of your page
+* Turn on or off displayed share count
+* Specify the screen width when this tool should appear
+
+<a href="https://www.addthis.com/register">Sign up</a> and create a registered account with AddThis to access the AddThis mode for this plugin, which offers additional share button configurations and analytics via your AddThis dashboard. Analytics include your top performing content, services and tools.
+
+AddThis also has a <a href="https://wordpress.org/plugins/addthis-follow/">follow button plugin</a> for WordPress, which is great for getting more of your visitors to follow you on some of the most popular social networks, such as Facebook, Twitter, Instagram, and more. Get the AddThis follow button plugin for WordPress <a href="https://wordpress.org/plugins/addthis-follow/">here</a>.
+
+<a href="http://www.addthis.com/academy/">AddThis Academy</a> | <a href="http://www.addthis.com/privacy">Privacy Policy</a>
+
+
 
 == Installation ==
 
@@ -27,6 +57,8 @@ For a manual installation via FTP:
 To upload the plugin through WordPress, instead of FTP:
 
 1. Upload the downloaded zip file on the 'Add New' plugins screen (see the 'Upload' tab) in your WordPress admin area and activate.
+
+
 
 == Frequently Asked Questions ==
 
@@ -63,6 +95,8 @@ We currently support over 200 services, from email and blogging platforms to soc
 = How do I remove AddThis from a page =
 In the screen options you can enable the AddThis meta box. Check the box and save if you've already published that page or post to disable AddThis on that page or post.
 
+
+
 == Screenshots ==
 
 1. Sharing Tools tab on the plugin settings page (WordPress mode)
@@ -74,7 +108,12 @@ In the screen options you can enable the AddThis meta box. Check the box and sav
 6. Tool Gallery on the AddThis Dashboard
 7. Customization options on the AddThis Dashboard
 
+
+
 == Changelog ==
+
+= 5.3.2 =
+* Potential Yoast fix. <a href="mailto:help@addthis.com">Please let us know</a> if you still have issues with this plugin and Yoast after upgrading.
 
 = 5.3.1 =
 * Disabling the mobile version of the Sharing Sidebar when the Mobile Sharing Toolbar is enabled
@@ -414,7 +453,11 @@ Fixed nondeterministic bug with the_title(), causing the title to occasionally a
  * Updated settings management to use nonces
 
 
+
 == Upgrade Notice ==
+
+= 5.3.2 =
+Potential Yoast fix. <a href="mailto:help@addthis.com">Please let us know</a> if you still have issues with this plugin and Yoast after upgrading.
 
 = 5.3.1 =
 Disabling the mobile version of the Sharing Sidebar when the Mobile Sharing Toolbar is enabled
@@ -645,4 +688,3 @@ Bug fixes, more filters, small tweak to options.
 
 = 2.0.0 =
 More and better options for sharing widgets.  Redesigned analytics dashboard widget and interface.
-
