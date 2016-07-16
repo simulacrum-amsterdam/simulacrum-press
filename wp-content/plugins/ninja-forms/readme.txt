@@ -1,9 +1,9 @@
 === Ninja Forms ===
 Contributors: wpninjasllc, kstover, jameslaws, wpnzach, kbjohnson90, aman086, daveshine, mordauk, bftrick, helgatheviking
 Tags: form, forms, contact form, custom form, form builder, form creator, form manager, form creation, contact forms, custom forms, forms builder, forms creator, forms manager, forms creation, form administration,
-Requires at least: 4.2
-Tested up to: 4.4.2
-Stable tag: 2.9.38.1
+Requires at least: 4.3
+Tested up to: 4.5.2
+Stable tag: 2.9.51
 License: GPLv2 or later
 
 Create forms and manage submissions easily with a simple drag and drop interface. Contact forms, subscription forms, or any other form for WordPress.
@@ -97,19 +97,117 @@ For help and video tutorials, please visit our website: [Ninja Forms Documentati
 
 == Upgrade Notice ==
 
-= 2.9.38.1 (03 May 2016) =
+= 2.9.51 (30 June 2016) =
 
-*Security:*
+*Bugs:*
 
-* Fixed a major security issue. Please update as soon as possible.
+* Our tweak to allow more users to try out the 3.0 beta opened up the pool a little wider than we'd intended. Reigning that in a bit.
+* Fixed a bug with description position that could cause the description to fail to open.
 
 == Changelog ==
 
-= 2.9.38.1 (03 May 2016) =
+= 2.9.51 (30 June 2016) =
+
+*Bugs:*
+
+* Our tweak to allow more users to try out the 3.0 beta opened up the pool a little wider than we'd intended. Reigning that in a bit.
+* Fixed a bug with description position that could cause the description to fail to open.
+
+= 2.9.50 (21 June 2016) =
+
+*Changes:*
+
+* Opening the ability to upgrade to 3.0 to more users.
+
+= 2.9.49 (20 June 2016) =
+
+*Changes:*
+
+* Updating compatibility for Three add-ons.
+
+= 2.9.48 (13 June 2016) =
+
+*Bugs:*
+
+* Sites that also use WooCommerce should no longer see issues with non-logged in users being unable to submit forms.
+* Fixed a bug with 3.0 Beta that could cause submission saving to fail.
+* Fixed a timezone issue with the system status page.
+* Fixed a bug that could cause translations to fail in some circumstances.
+
+= 2.9.47 (1 June 2016) =
+
+*Bugs:*
+
+* Fixed a bug that could cause forms to disappear on some installations.
+
+= 2.9.46 (31 May 2016) =
+
+*Changes:*
+
+* Updating opinionated styling choices.
+
+*Bugs:*
+
+* Fixed a bug that could cause the input limit to crash submission.
+* Fixed a bug with 3.0 that could cause conversion issues.
+
+= 2.9.45 (2 May 2016) =
+
+*Bugs:*
+
+* Fixed a bug with templating that could cause the server to throw a 500 error.
+
+= 2.9.44 (28 April 2016) =
 
 *Security:*
 
-* Fixed a major security issue. Please update as soon as possible.
+* Fixed an important security issue related to the 3.0 codebase. It is recommended that all users update to 2.9.44 as soon as possible.
+
+*Bugs:*
+
+* Fixed a bug with one of the security fixes that could cause a fatal error.
+
+= 2.9.43 (28 April 2016) =
+
+*Security:*
+
+* Fixed an important security issue related to the 3.0 codebase. It is recommended that all users update to 2.9.43 as soon as possible.
+
+= 2.9.42 (14 April 2016) =
+
+*Bugs:*
+
+* 3.0: Fixed a bug that could cause merge tags to disappear underneath the full-screen builder.
+
+= 2.9.41 (10 April 2016) =
+
+*Bugs:*
+
+* Fixed a bug that caused Ninja Forms to fetch the add-ons RSS feed too often.
+* Fixed a bug that caused an image to be loaded remotely rather than from the plugin file.
+
+= 2.9.40 (05 April 2016) =
+
+*Changes:*
+
+* 3.0: forms should no longer default to "require logged-in."
+* 3.0: added field type icons to the builder.
+* Added new filters.
+* Updated "tested up to" readme value to 4.5.
+
+*Bugs:*
+
+* 3.0: fixed a whitescreen in the system status page.
+
+= 2.9.39 (22 March 2016) =
+
+*Changes:*
+
+* Removed the anti-spam question from the default contact form in 3.0.
+
+*Bugs:*
+
+* Fixed a conflict with Jetpack that could cause the forms menu item to disappear.
 
 = 2.9.38 (22 March 2016) =
 

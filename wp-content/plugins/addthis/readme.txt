@@ -3,7 +3,7 @@ Contributors: abramsm, srijith.v, vipinss, dnrahamim, jgrodel, bradaddthiscom, m
 Tags: AddThis, share buttons, sharing buttons, share buttons plugin, plugin, widget, social buttons, social tools, Facebook, Twitter, LinkedIn, Pinterest, bookmark, bookmarking, email sharing, sharing, share, mobile, mobile sharing, mobile sharing buttons, sidebar, sharing sidebar
 Requires at least: 3.0
 Tested up to: 4.5
-Stable tag: 5.3.2
+Stable tag: 5.3.3
 
 AddThis Share Buttons help you to increase traffic to your website by getting more of your content shared on social media.
 
@@ -31,7 +31,6 @@ With the AddThis Share Buttons WordPress plugin, you get:
 
 * Position the toolbar at the top or bottom of your page
 * Turn on or off displayed share count
-* Specify the screen width when this tool should appear
 
 <a href="https://www.addthis.com/register">Sign up</a> and create a registered account with AddThis to access the AddThis mode for this plugin, which offers additional share button configurations and analytics via your AddThis dashboard. Analytics include your top performing content, services and tools.
 
@@ -111,6 +110,10 @@ In the screen options you can enable the AddThis meta box. Check the box and sav
 
 
 == Changelog ==
+
+= 5.3.3 =
+* Fixing PHP Notice: Undefined variable: displaySidebar in AddThisConfigs.php on line 450
+* Replacing a silly use of mysql_real_escape_string in title field value sanitization of widgets with sanitize_text_field, for improved PHP7 support
 
 = 5.3.2 =
 * Potential Yoast fix. <a href="mailto:help@addthis.com">Please let us know</a> if you still have issues with this plugin and Yoast after upgrading.
@@ -455,6 +458,9 @@ Fixed nondeterministic bug with the_title(), causing the title to occasionally a
 
 
 == Upgrade Notice ==
+
+= 5.3.3 =
+Fixing PHP Notice: Undefined variable: displaySidebar in AddThisConfigs.php on line 450. Replacing a silly use of mysql_real_escape_string in title field value sanitization of widgets with sanitize_text_field, for improved PHP7 support.
 
 = 5.3.2 =
 Potential Yoast fix. <a href="mailto:help@addthis.com">Please let us know</a> if you still have issues with this plugin and Yoast after upgrading.

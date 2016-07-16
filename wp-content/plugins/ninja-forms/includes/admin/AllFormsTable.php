@@ -227,6 +227,8 @@ class NF_Admin_AllFormsTable extends WP_List_Table
 
     public static function process_bulk_action()
     {
+        if( ! isset( $_GET[ 'page' ] ) || 'ninja-forms' != $_GET[ 'page' ] ) return;
+
         if ( isset( $_REQUEST[ 'action' ] ) && 'duplicate' === $_REQUEST[ 'action' ] ) {
 
             // In our file that handles the request, verify the nonce.
@@ -266,13 +268,17 @@ class NF_Admin_AllFormsTable extends WP_List_Table
 
             // In our file that handles the request, verify the nonce.
             $nonce = esc_attr( $_REQUEST['_wpnonce'] );
+
             if ( ! wp_verify_nonce( $nonce, 'bulk-forms' ) ) {
                 die( 'Go get a life, script kiddies' );
             }
+
             if( isset( $_POST[ 'bulk-delete' ] ) ) {
                 $delete_ids = esc_sql($_POST['bulk-delete']);
+
                 // loop over the array of record IDs and delete them
                 foreach ($delete_ids as $id) {
+
                     self::delete_item(absint($id));
                 }
             }

@@ -18,12 +18,12 @@ final class NF_Actions_Email extends NF_Abstracts_Action
     /**
     * @var string
     */
-    protected $_timing = 'normal';
+    protected $_timing = 'late';
 
     /**
     * @var int
     */
-    protected $_priority = '10';
+    protected $_priority = 10;
 
     /**
     * Constructor
@@ -91,7 +91,7 @@ final class NF_Actions_Email extends NF_Abstracts_Action
 
         if( ! isset( $settings[ 'id' ] ) ) $settings[ 'id' ] = '';
 
-        $attachments = apply_filters( 'ninja_forms_action_email_attachments', $attachments, '' /* TODO: Action Key */, $settings[ 'id' ] );
+        $attachments = apply_filters( 'ninja_forms_action_email_attachments', $attachments, $data, $settings );
 
         return $attachments;
     }
@@ -219,8 +219,8 @@ final class NF_Actions_Email extends NF_Abstracts_Action
         return apply_filters( 'nf_sub_csv_terminator', $terminator );
     }
 
-    public function ninja_forms_action_email_attachments( $attachments, $action_key, $action_id )
+    public function ninja_forms_action_email_attachments( $attachments, $form_data, $action_settings )
     {
-        return apply_filters( 'nf_email_notification_attachments', $attachments, $action_id );
+        return apply_filters( 'nf_email_notification_attachments', $attachments, $action_settings[ 'id' ] );
     }
 }

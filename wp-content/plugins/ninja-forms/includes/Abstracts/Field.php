@@ -21,6 +21,11 @@ abstract class NF_Abstracts_Field
     protected $_section = '';
 
     /**
+    * @var string
+    */
+    protected $_icon = 'square-o';
+
+    /**
      * @var array
      */
     protected $_aliases = array();
@@ -109,9 +114,6 @@ abstract class NF_Abstracts_Field
      */
     public function __construct()
     {
-        // Translate the nicename property.
-        $this->_nicename = __( $this->_nicename, 'ninja-forms' );
-
         if( ! empty( $this->_settings_only ) ){
 
             $this->_settings = array_merge( $this->_settings, $this->_settings_only );
@@ -177,6 +179,11 @@ abstract class NF_Abstracts_Field
     public function get_section()
     {
         return $this->_section;
+    }
+
+    public function get_icon()
+    {
+        return $this->_icon;
     }
 
     public function get_aliases()
@@ -265,7 +272,7 @@ abstract class NF_Abstracts_Field
             }
         }
 
-        return $settings;
+        return $settings = apply_filters( 'ninja_forms_field_load_settings', $settings, $this->_name, $this->get_parent_type() );
     }
 
     public static function get_base_template()

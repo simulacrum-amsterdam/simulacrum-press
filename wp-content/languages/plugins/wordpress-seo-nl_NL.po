@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2016-03-01 10:57:35+0000\n"
+"PO-Revision-Date: 2016-04-01 15:15:35+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -12,91 +12,91 @@ msgstr ""
 
 #: admin/views/tab-permalinks.php:26
 msgid "No redirect"
-msgstr ""
+msgstr "Geen redirect"
 
 #: admin/views/tab-permalinks.php:26
 msgid "Redirect"
-msgstr "Doorverwijzing"
+msgstr "Omleiding"
 
 #: admin/views/tab-permalinks.php:40
 msgid "Note: this feature has been deprecated, as the SEO value is close to 0 these days. If you disable it you will not be able to put it back on."
-msgstr ""
+msgstr "Let op: deze functionaliteit is verouderd, aangezien de SEO-waarde bijna nul is tegenwoordig. Als je dit uitschakelt kan je het daarom niet meer aan zetten."
 
 #: inc/class-wpseo-utils.php:651
 msgid "Trying to build a safe sitemap cache key, but the postfix and prefix combination leaves too little room to do this. You are probably requesting a page that is way out of the expected range."
-msgstr ""
+msgstr "Er is geprobeerd een goede sitemapcachesleutel te maken, maar de combinatie van voor- en navoegsel gaven hiervoor te weinig mogelijkheden. Je probeert waarschijnlijk een pagina op te vragen die ver buiten het verwachte gebied valt."
 
 #: inc/class-wpseo-utils.php:754
 msgid "Expected an integer as input."
-msgstr ""
+msgstr "Als invoer wordt een integer verwacht."
 
 #: admin/views/tab-breadcrumbs.php:36
 msgid "Regular"
-msgstr "Regulier"
+msgstr "Normaal"
 
 #: admin/views/tab-breadcrumbs.php:37
 msgid "Bold the last page"
-msgstr ""
+msgstr "Toon de laatste pagina vetgedrukt"
 
 #: admin/views/tab-permalinks.php:17
 msgid "Keep"
-msgstr "Behoud"
+msgstr "Behouden"
 
 #: admin/views/tab-permalinks.php:17
 msgid "Remove"
-msgstr "Weghalen"
+msgstr "Verwijderen"
 
 #: admin/pages/metas.php:197
 msgid "Author archives"
-msgstr "Auteur Archieven"
+msgstr "Auteursarchieven"
 
 #: admin/pages/metas.php:201
 msgid "Author archives are"
-msgstr ""
+msgstr "Auteursarchieven zijn"
 
 #: admin/pages/metas.php:210
 msgid "Date-based archives"
-msgstr ""
+msgstr "Datum gebaseerde archieven"
 
 #: admin/pages/metas.php:214
 msgid "Date-based archives are"
-msgstr ""
+msgstr "Datumgebaseerde archieven zijn"
 
 #: admin/pages/metas.php:238
 msgid "Subpages of archives"
-msgstr ""
+msgstr "Archief subpagina"
 
 #: admin/pages/xml-sitemaps.php:29
 msgid "XML sitemap functionality"
-msgstr ""
+msgstr "XML-sitemap functionaliteit"
 
 #: admin/pages/xml-sitemaps.php:75
 msgid "Author / user sitemap"
-msgstr ""
+msgstr "Auteur / gebruikerssitemap"
 
 #: admin/pages/xml-sitemaps.php:78
 msgid "The user sitemap contains the author archive URLs for every user on your site. You can choose to not include users without posts."
-msgstr ""
+msgstr "De gebruikerssitemap bevat de auteurarchief URLs voor elke gebruiker op je site. Je kan er voor kiezen om gebruikers zonder berichten niet op te nemen."
 
 #: admin/pages/xml-sitemaps.php:81
 msgid "In sitemap"
-msgstr ""
+msgstr "In sitemap"
 
 #: admin/pages/xml-sitemaps.php:81
 msgid "Not in sitemap"
-msgstr ""
+msgstr "Niet in sitemap"
 
 #: admin/pages/xml-sitemaps.php:82
 msgid "Users with zero posts"
-msgstr ""
+msgstr "Gebruikers zonder berichten"
 
 #: admin/pages/xml-sitemaps.php:86
 msgid "Filter specific user roles"
-msgstr ""
+msgstr "Filter gebruikerspecifieke rollen"
 
 #: admin/taxonomy/class-taxonomy-columns.php:99
 msgid "Term is set to noindex."
-msgstr ""
+msgstr "Term is ingesteld op noindex"
 
 #: admin/views/about.php:50
 msgid "Integrations"
@@ -104,13 +104,13 @@ msgstr "Integraties"
 
 #: admin/views/about.php:221 admin/views/about.php:226
 msgid "Tester / Developer"
-msgstr ""
+msgstr "Tester / Developer"
 
 #. translators: %1$s expands to the term title, %2$s to the taxonomy title.
 #. Both are only shown to screenreaders.
 #: admin/views/js-templates-primary-term.php:26
 msgid "Make %1$s primary %2$s"
-msgstr ""
+msgstr "Maak %1$s primair %2$s"
 
 #: admin/views/js-templates-primary-term.php:32
 msgid "Primary"
@@ -119,11 +119,11 @@ msgstr "Primair"
 #. translators: %s is the taxonomy title. This will be shown to screenreaders
 #: admin/views/js-templates-primary-term.php:39
 msgid "Primary %s"
-msgstr ""
+msgstr "Primair %s"
 
 #: admin/views/tab-breadcrumbs.php:32
 msgid "Show Blog page"
-msgstr ""
+msgstr "Toon berichtenpagina"
 
 #: admin/views/tab-breadcrumbs.php:35
 msgid "Bold"
@@ -131,29 +131,29 @@ msgstr "Vetgedrukt"
 
 #: admin/pages/dashboard.php:249
 msgid "The advanced section of the Yoast SEO meta box allows a user to noindex posts or change the canonical. These are things you might not want if you don't trust your authors, so by default, only administrators can do this. Enabling the advanced box allows all users to change these settings."
-msgstr ""
+msgstr "Het geavanceerde gedeelte van de Yoast SEO metabox staat een gebruiker toe om berichten op 'noindex' te zetten en de canonieke URL te wijzigen. Dit zijn mogelijkheden die je misschien niet wilt als je de auteurs op je website niet vertrouwt, daarom kunnen standaard alleen beheerders dit. Het inschakelen van het gevorderde gedeelte staat alle gebruikers toe deze instellingen aan te passen."
 
 #. translators: %1$s expands to OnPage.org
 #: admin/pages/dashboard.php:255
 msgid "%1$s indexability check"
-msgstr ""
+msgstr "%1$s indexeerbaarheidscontrole"
 
 #: admin/pages/metas.php:102 admin/pages/metas.php:106
 #: admin/pages/metas.php:168 admin/views/tab-breadcrumbs.php:30
 #: admin/views/tab-permalinks.php:62
 msgid "Show"
-msgstr "Weergeven"
+msgstr "Tonen"
 
 #. translators: %1$s expands to Yoast SEO
 #: admin/pages/dashboard.php:247
 msgid "Advanced part of the %1$s meta box"
-msgstr ""
+msgstr "Geavanceerde gedeelte van de %1$s metabox"
 
 #: admin/class-yoast-form.php:326 admin/pages/dashboard.php:245
 #: admin/pages/metas.php:199 admin/pages/metas.php:212
 #: admin/pages/xml-sitemaps.php:74
 msgid "Enabled"
-msgstr "Inschakelen"
+msgstr "Ingeschakeld"
 
 #: admin/class-yoast-form.php:326 admin/pages/dashboard.php:245
 #: admin/pages/metas.php:200 admin/pages/metas.php:213
@@ -1031,7 +1031,7 @@ msgstr "Blog"
 
 #: admin/views/tab-breadcrumbs.php:85
 msgid "How to insert breadcrumbs in your theme"
-msgstr "Hoe een kruimelpad aan het thema toevoegen"
+msgstr "Hoe een kruimelpad aan het thema toe te voegen"
 
 #. translators: %1$s / %2$s: links to the breadcrumbs implementation page on
 #. the Yoast knowledgebase
@@ -1173,7 +1173,7 @@ msgstr "Je kan het robots.txt bestand niet bewerken."
 
 #: admin/views/tool-file-editor.php:44
 msgid "Updated Robots.txt"
-msgstr "Robots.txt succesvol bijgewerkt"
+msgstr "Robots.txt bijgewerkt"
 
 #: admin/views/tool-file-editor.php:51
 msgid "You cannot edit the .htaccess file."
@@ -1197,7 +1197,7 @@ msgstr "Als je een 'robots.txt'-bestand hebt dat je mag bewerken, dan kun je het
 
 #: admin/views/tool-file-editor.php:101
 msgid "If your robots.txt were writable, you could edit it from here."
-msgstr "Wanneer je robots.txt beschrijfbaar zou zijn, zou je het hier kunnen bewerken."
+msgstr "Als robots.txt beschrijfbaar is, kun je het hier bewerken."
 
 #: admin/views/tool-file-editor.php:107
 msgid "Edit the content of your robots.txt:"
@@ -1213,7 +1213,7 @@ msgstr ".htaccess-bestand"
 
 #: admin/views/tool-file-editor.php:127
 msgid "If your .htaccess were writable, you could edit it from here."
-msgstr "Als je .htaccess schrijfbaar zou zijn, zou je het hier kunnen bewerken."
+msgstr "Als .htaccess beschrijfbaar is, kun je het hier bewerken."
 
 #: admin/views/tool-file-editor.php:133
 msgid "Edit the content of your .htaccess:"
@@ -1221,7 +1221,7 @@ msgstr "Inhoud van je .htaccess bewerken:"
 
 #: admin/views/tool-file-editor.php:135
 msgid "Save changes to .htaccess"
-msgstr ".htaccess wijzigingen opslaan"
+msgstr "Wijzigingen in .htaccess opslaan"
 
 #: admin/views/tool-file-editor.php:140
 msgid "If you had a .htaccess file and it was editable, you could edit it from here."
@@ -1350,7 +1350,7 @@ msgstr "Pagina niet gevonden"
 
 #: frontend/class-frontend.php:1266
 msgid "Admin only notice: this page doesn't show a meta description because it doesn't have one, either write it for this page specifically or go into the SEO -> Titles menu and set up a template."
-msgstr "Bericht voor de beheerder: deze pagina toont geen meta-omschrijving omdat er geen opgegeven is. Schrijf er specifiek een voor deze pagina of ga naar het SEO -> Titels-menu om een sjabloon op te stellen."
+msgstr "Bericht voor de beheerder: deze pagina toont geen meta-omschrijving omdat er geen opgegeven is. Schrijf er specifiek een voor deze pagina of ga naar het menu SEO -> Titels om een sjabloon op te stellen."
 
 #: inc/class-wpseo-replace-vars.php:106
 msgid "A replacement variable can only contain alphanumeric characters, an underscore or a dash. Try renaming your variable."
@@ -1410,23 +1410,23 @@ msgstr "Vervangen door de bericht-categorieën (door komma's gescheiden)"
 
 #: inc/class-wpseo-replace-vars.php:1076
 msgid "Replaced with the category description"
-msgstr "Door de categorie-omschrijving vervangen "
+msgstr "Vervangen door de categorie-omschrijving"
 
 #: inc/class-wpseo-replace-vars.php:1077
 msgid "Replaced with the tag description"
-msgstr "Door de tag-omschrijving vervangen "
+msgstr "Vervangen door de tag-omschrijving"
 
 #: inc/class-wpseo-replace-vars.php:1078
 msgid "Replaced with the term description"
-msgstr "Door de tag-omschrijving vervangen "
+msgstr "Vervangen door de term-omschrijving"
 
 #: inc/class-wpseo-replace-vars.php:1079
 msgid "Replaced with the term name"
-msgstr "Vervangen door de tag-naam"
+msgstr "Vervangen door de term-naam"
 
 #: inc/class-wpseo-replace-vars.php:1080
 msgid "Replaced with the current search phrase"
-msgstr "Door de huidige zoekzin vervangen"
+msgstr "Vervangen door de huidige zoekzin"
 
 #: inc/class-wpseo-replace-vars.php:1094
 msgid "Replaced with the post type single label"
@@ -1438,11 +1438,11 @@ msgstr "Vervangen door het berichttype-meervoudlabel"
 
 #: inc/class-wpseo-replace-vars.php:1096
 msgid "Replaced with the post/page modified time"
-msgstr "Door de aangepast tijd van bericht/pagina vervangen "
+msgstr "Vervangen door de aangepast tijd van bericht/pagina"
 
 #: inc/class-wpseo-replace-vars.php:1097
 msgid "Replaced with the post/page ID"
-msgstr "Door de bericht / pagina-ID vervangen "
+msgstr "Vervangen door het bericht-/pagina-ID"
 
 #: inc/class-wpseo-replace-vars.php:1098
 msgid "Replaced with the post/page author's 'nicename'"
@@ -1454,7 +1454,7 @@ msgstr "Vervangen door de 'Biografie-informatie' van de bericht/pagina-auteur"
 
 #: inc/class-wpseo-replace-vars.php:1100
 msgid "Replaced with the post/page author's userid"
-msgstr "Door het gebruikers-ID van de auteur van bericht/pagina vervangen"
+msgstr "Vervangen door het gebruikers-ID van de auteur van bericht/pagina"
 
 #: inc/class-wpseo-replace-vars.php:1101
 msgid "Replaced with the current time"
@@ -1462,7 +1462,7 @@ msgstr "Vervangen door de huidige tijd"
 
 #: inc/class-wpseo-replace-vars.php:1102
 msgid "Replaced with the current date"
-msgstr "Door huidige datum vervangen"
+msgstr "Vervangen door huidige datum"
 
 #: inc/class-wpseo-replace-vars.php:1103
 msgid "Replaced with the current day"
@@ -1470,11 +1470,11 @@ msgstr "Vervangen door de huidige dag"
 
 #: inc/class-wpseo-replace-vars.php:1104
 msgid "Replaced with the current month"
-msgstr "Door de huidige maand vervangen"
+msgstr "Vervangen door de huidige maand"
 
 #: inc/class-wpseo-replace-vars.php:1105
 msgid "Replaced with the current year"
-msgstr "Door het huidige jaar vervangen"
+msgstr "Vervangen door het huidige jaar"
 
 #: inc/class-wpseo-replace-vars.php:1106
 msgid "Replaced with the current page number with context (i.e. page 2 of 4)"
@@ -1482,11 +1482,11 @@ msgstr "Vervangen door het huidige paginanummer met  context (bv pagina 2 van 8)
 
 #: inc/class-wpseo-replace-vars.php:1107
 msgid "Replaced with the current page total"
-msgstr "Door het huidige paginatotaal vervangen"
+msgstr "Vervangen door het huidige paginatotaal"
 
 #: inc/class-wpseo-replace-vars.php:1108
 msgid "Replaced with the current page number"
-msgstr "Door het huidige paginanummer vervangen"
+msgstr "Vervangen door het huidige paginanummer"
 
 #: inc/class-wpseo-replace-vars.php:1109
 msgid "Attachment caption"
@@ -1494,7 +1494,7 @@ msgstr "Bijlage-onderschrift"
 
 #: inc/class-wpseo-replace-vars.php:1110
 msgid "Replaced with the posts focus keyword"
-msgstr "Vervangen met het bericht focus sleutelwoord"
+msgstr "Vervangen door het focus-zoekwoord van het bericht"
 
 #: inc/class-wpseo-replace-vars.php:1111
 msgid "Replaced with the slug which caused the 404"
@@ -2074,7 +2074,7 @@ msgstr "Als je wilt voorkomen dat /pagina/2/ en verder in welk archief dan ook v
 
 #: admin/pages/metas.php:242
 msgid "I don't know why you'd want to use meta keywords, but if you want to, enable this."
-msgstr ""
+msgstr "Ik weet niet waarom je meta-trefwoorden wilt gebruiken, maar als je dat wilt, vink dit aan."
 
 #: admin/pages/metas.php:241
 msgid "Use meta keywords tag?"
@@ -2542,7 +2542,7 @@ msgstr "Facebook Insights en beheerder"
 #. translators: %1$s and %2$s expand to a link to Facebook Insights
 #: admin/class-social-facebook.php:294
 msgid "To be able to access %1$sFacebook Insights%2$s for your site, you need to specify a Facebook Admin. This can be a user. If you have an app for your site, you could use that as well."
-msgstr ""
+msgstr "Om toegang te krijgen tot %1$sFacebook Insights%2$s voor je site moet je een Facebookbeheerder specificeren. Dit kan een gebruiker zijn. Als je een app hebt voor de site, kun je deze ook hiervoor gebruiken."
 
 #. translators: %1$s and %2$s expand to a link to the Yoast Knowledge Base
 #: admin/class-social-facebook.php:300
@@ -2912,7 +2912,7 @@ msgstr "Berichten"
 
 #: admin/class-admin.php:420
 msgid "Huge SEO Issue: You're blocking access to robots."
-msgstr "Groot SEO-probleem: Toegang voor robots wordt geblokkeerd!"
+msgstr "Groot SEO probleem: toegang voor robots wordt geblokkeerd."
 
 #: admin/class-admin.php:421
 msgid "You must %sgo to your Reading Settings%s and uncheck the box for Search Engine Visibility."
@@ -3243,7 +3243,7 @@ msgstr "Meta Robots geavanceerd"
 
 #: admin/metabox/class-metabox.php:80
 msgid "Advanced <code>meta</code> robots settings for this page."
-msgstr "Geavanceerde <code>meta</code> robots instellingen voor deze pagina."
+msgstr "Geavanceerde <code>meta</code> robotsinstellingen voor deze pagina."
 
 #: admin/metabox/class-metabox.php:81
 msgid "Site-wide default: %s"
@@ -3285,7 +3285,7 @@ msgstr "Canonieke URL"
 
 #: admin/metabox/class-metabox.php:92
 msgid "The canonical URL that this page should point to, leave empty to default to permalink. %sCross domain canonical%s supported too."
-msgstr "De canonieke URL waar deze pagina naar moet verwijzen; laat deze leeg om naar de eigen permalink te verwijzen. %sCross domain canonical%s wordt ook ondersteund."
+msgstr "De canonieke URL waar deze pagina naar moet verwijzen; laat dit leeg om naar de eigen permalink te verwijzen. %sCross domain canonical%s wordt ook ondersteund."
 
 #: admin/metabox/class-metabox.php:94
 msgid "301 Redirect"

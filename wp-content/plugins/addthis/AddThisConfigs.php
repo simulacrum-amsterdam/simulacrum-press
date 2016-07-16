@@ -411,10 +411,10 @@ if (!class_exists('AddThisConfigs')) {
                 return $addThisLayersVariable;
             }
 
+            $displaySidebar = false;
             if (!empty($this->configs['addthis_sidebar_enabled'])) {
                 $templateType = _addthis_determine_template_type();
 
-                $displaySidebar = false;
                 if (is_string($templateType)) {
                     $fieldList = $this->getFieldsForContentTypeSharingLocations($templateType, 'sidebar');
                     $fieldName = $fieldList[0]['fieldName'];

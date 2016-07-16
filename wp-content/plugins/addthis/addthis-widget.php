@@ -108,7 +108,7 @@ class Addthis_Horizontal_Recommended_Content_Widget extends WP_Widget
     public function update($new_instance, $old_instance)
     {
         $new_instance['title'] = (! empty($new_instance['title'])) ?
-                                mysql_real_escape_string($new_instance['title'])
+                                sanitize_text_field($new_instance['title'])
                                 : '';
         return $new_instance;
     }
@@ -214,7 +214,7 @@ class Addthis_Vertical_Recommended_Content_Widget extends WP_Widget
     public function update($new_instance, $old_instance)
     {
         $new_instance['title'] = (! empty($new_instance['title'])) ?
-                                mysql_real_escape_string($new_instance['title'])
+                                sanitize_text_field($new_instance['title'])
                                 : '';
         return $new_instance;
     }
